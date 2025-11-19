@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Offer from "../components/Offer";
+
 const Home = ({ search }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +48,9 @@ const Home = ({ search }) => {
   ) : (
     <>
       <nav>
+        <span className="numberResponses">
+          <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
+        </span>
         Pages :{" "}
         <ol className="pages">
           {new Array(pages).fill("").map((item, index) => (

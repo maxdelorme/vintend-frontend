@@ -5,9 +5,13 @@
   font-size: clamp(12px, 2.5vw, 18px);
   --header-height: 3rem;
   --vinted-green: #2fb0ba;
+  font-family: sans-serif;
 }
 body {
   height: 100%;
+}
+strong {
+  font-weight: 600;
 }
 
 #root {
@@ -109,14 +113,31 @@ nav {
   gap: 15px;
   justify-content: flex-end;
   align-items: center;
+  .numberResponses {
+    margin-right: auto;
+    border: 1px solid var(--vinted-green);
+    border-radius: 5px;
+    height: 1.5rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 0 1rem;
+    color: var(--vinted-green);
+  }
   .pages {
     display: inline-flex;
     gap: 4px;
     li {
       border: 1px solid lightgray;
       cursor: pointer;
-      padding: 0.5rem;
-      border-radius: 4px;
+      height: 1.5rem;
+      width: 1.5rem;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       &.active {
         background-color: var(--vinted-green);
         color: white;
