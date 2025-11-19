@@ -14,23 +14,6 @@ body {
   max-width: 1280px;
   margin: 0 auto;
 }
-header {
-  border-bottom: 1px solid lightgrey;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  img {
-    margin-right: auto;
-  }
-  label {
-    margin-left: auto;
-  }
-}
 
 button {
   padding: 0.5rem 1rem;
@@ -47,8 +30,24 @@ button {
     background-color: var(--vinted-green);
   }
 }
+
 header {
+  border-bottom: 1px solid lightgrey;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+
+  img {
+    margin-right: auto;
+  }
+
   label {
+    margin-left: auto;
     position: relative;
   }
   input {
