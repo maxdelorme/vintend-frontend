@@ -172,7 +172,7 @@ nav {
   padding: 2rem 2rem;
   justify-content: space-between;
   overflow: hidden;
-
+  transition: none;
   .col-g {
     width: 60%;
   }
