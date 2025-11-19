@@ -40,7 +40,7 @@ header {
   height: var(--header-height);
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   width: 100%;
   position: sticky;
   top: 0;
@@ -49,9 +49,11 @@ header {
   img {
     margin-right: auto;
   }
-
+  & > span {
+    display: flex;
+    gap: 10px;
+  }
   label {
-    margin-left: auto;
     position: relative;
   }
   input {
@@ -64,6 +66,23 @@ header {
       position: absolute;
       right: 0.6rem;
       top: 0.6rem;
+    }
+  }
+  label.range {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    font-size: 0.8rem;
+    color: grey;
+    & * {
+      transition: none;
+    }
+    .range-slider {
+      width: 237px;
+    }
+    .range-slider__range,
+    .range-slider__thumb {
+      background-color: var(--vinted-green);
     }
   }
 }

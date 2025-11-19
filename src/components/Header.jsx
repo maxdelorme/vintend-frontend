@@ -1,7 +1,10 @@
 import logo from "../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
-const Header = ({ search, setSearch, setSearchParams }) => {
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
+
+const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
   const newQueryParameters = new URLSearchParams();
 
   return (
@@ -16,18 +19,43 @@ const Header = ({ search, setSearch, setSearchParams }) => {
             const searchValue = event.target.value;
             setSearch(searchValue);
             if (searchValue)
-              newQueryParameters.set("search", event.target.value);
-            else newQueryParameters.delete("search");
-            setSearchParams(newQueryParameters);
+              setSearchParams((prev) => {
+                prev.set("search", searchValue);
+                return prev;
+              });
+            else {
+              setSearchParams((prev) => {
+                console.log(prev);
+                prev.delete("search");
+                return prev;
+              });
+            }
           }}
           type="text"
           placeholder="Recherche des articles"
         ></input>
         <MdOutlineSearch />
       </label>
-      <button className="outline">S'inscrire</button>
-      <button className="outline">se connecter</button>
-      <button className="fill-primary">vends tes articles</button>
+      <label className="range">
+        Prix entre {range[0]} €
+        <RangeSlider
+          value={range}
+          onInput={(range) => {
+            setRange(range);
+            setSearchParams((prev) => {
+              prev.set("priceMin", range[0]);
+              prev.set("priceMax", range[1]);
+              return prev;
+            });
+          }}
+        />
+        {range[1]}€
+      </label>
+      <span>
+        <button className="outline">S'inscrire</button>
+        <button className="outline">se connecter</button>
+        <button className="fill-primary">vends tes articles</button>
+      </span>
     </header>
   );
 };

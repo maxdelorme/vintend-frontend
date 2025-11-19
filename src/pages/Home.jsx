@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Offer from "../components/Offer";
 
-const Home = ({ search }) => {
+const Home = ({ search, range }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -20,6 +20,8 @@ const Home = ({ search }) => {
               title: search,
               page: page,
               limit: offerPerPage,
+              priceMax: range[1],
+              priceMin: range[0],
             },
           }
         );
@@ -37,7 +39,7 @@ const Home = ({ search }) => {
     return () => {
       ignore = true;
     };
-  }, [search, page]);
+  }, [search, page, range]);
 
   if (!isLoading) {
     pages = Math.ceil(data.count / offerPerPage);

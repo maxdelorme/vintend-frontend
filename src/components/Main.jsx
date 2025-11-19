@@ -9,6 +9,9 @@ const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
   const querySearch = currentQueryParameters.get("search");
   const [search, setSearch] = useState(querySearch);
+  const queryPriceMax = currentQueryParameters.get("priceMax");
+  const queryPriceMin = currentQueryParameters.get("priceMin");
+  const [range, setRange] = useState([queryPriceMin, queryPriceMax]);
 
   return (
     <>
@@ -16,10 +19,15 @@ const Main = () => {
         search={search}
         setSearch={setSearch}
         setSearchParams={setSearchParams}
+        range={range}
+        setRange={setRange}
       />
       <main>
         <Routes>
-          <Route path="/" element={<Home search={search} />}></Route>
+          <Route
+            path="/"
+            element={<Home search={search} range={range} />}
+          ></Route>
           <Route path="/offers/:id" element={<Offer />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
