@@ -47,8 +47,8 @@ const Offer = () => {
       <div className="col-d">
         <div className="price">{offer.product_price} €</div>
         <div className="details">
-          {offer.product_details.map((detail) => (
-            <div>
+          {offer.product_details.map((detail, index) => (
+            <div key={index}>
               <p>{Object.keys(detail)[0]}</p>
               <div className="detail">{detail[Object.keys(detail)[0]]}</div>
             </div>
