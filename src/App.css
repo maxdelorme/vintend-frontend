@@ -1,0 +1,172 @@
+* {
+  transition: all 0.3s ease-in-out;
+}
+:root {
+  font-size: clamp(12px, 2.5vw, 18px);
+  --header-height: 3rem;
+  --vinted-green: #2fb0ba;
+}
+body {
+  height: 100%;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+header {
+  border-bottom: 1px solid lightgrey;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  img {
+    margin-right: auto;
+  }
+  label {
+    margin-left: auto;
+  }
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+
+  &.outline {
+    border: 1px solid var(--vinted-green);
+    background-color: white;
+    color: var(--vinted-green);
+  }
+  &.fill-primary {
+    border: 1px solid var(--vinted-green);
+    color: white;
+    background-color: var(--vinted-green);
+  }
+}
+header {
+  label {
+    position: relative;
+  }
+  input {
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid lightgrey;
+    padding-right: 2rem;
+    & + svg {
+      fill: lightgrey;
+      position: absolute;
+      right: 0.6rem;
+      top: 0.6rem;
+    }
+  }
+}
+
+.listOffers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  a {
+    text-decoration: none;
+    width: calc((100% - 4 * 20px) / 5);
+  }
+  .offer {
+    flex: 1;
+
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgb(237, 237, 237);
+    color: black;
+
+    &:hover {
+      box-shadow: 2px 2px 5px lightgray;
+    }
+    .name {
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 150px;
+    }
+    img {
+      width: calc(100%);
+      height: 300px;
+      object-fit: cover;
+    }
+    .price {
+      height: 0.78rem;
+    }
+  }
+}
+
+.offer-page {
+  background-color: #f3f5f5;
+  display: flex;
+  height: 100%;
+  padding: 2rem 2rem;
+  justify-content: space-around;
+  overflow: hidden;
+  gap: 30px;
+
+  .col-g img {
+    height: 100%;
+  }
+  .col-d {
+    background-color: white;
+    width: 40%;
+    padding: 2rem;
+    min-width: 400px;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    .price {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .details {
+      flex-direction: column;
+      display: flex;
+      gap: 0.4rem;
+      div {
+        display: flex;
+        p {
+          color: lightgray;
+          width: 50%;
+        }
+      }
+    }
+    hr {
+      background-color: lightgrey;
+      height: 1px;
+      border: 0;
+      width: 100%;
+    }
+    .name {
+      font-weight: bold;
+    }
+    .desc {
+      color: lightgray;
+    }
+    .owner {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 32px;
+      .avatar img {
+        height: 48px;
+        border-radius: 5px;
+      }
+    }
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+import logo from "../assets/img/logo.svg";
+import { MdOutlineSearch } from "react-icons/md";
+import { Link } from "react-router-dom";
+const Header = ({ search, setSearch }) => {
+  return (
+    <header>
+      <Link to="/">
+        <img src={logo} />
+      </Link>
+      <label>
+        <input
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+          type="text"
+          placeholder="Recherche des articles"
+        ></input>
+        <MdOutlineSearch />
+      </label>
+      <button className="outline">S'inscrire</button>
+      <button className="outline">se connecter</button>
+      <button className="fill-primary">vends tes articles</button>
+    </header>
+  );
+};
+
+export default Header;
