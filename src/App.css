@@ -103,6 +103,10 @@ header {
     }
   }
 }
+nav {
+  margin: 10px 0;
+  display: flex;
+  gap: 15px;
   justify-content: flex-end;
   align-items: center;
   .pages {
