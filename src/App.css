@@ -103,6 +103,23 @@ header {
     }
   }
 }
+  justify-content: flex-end;
+  align-items: center;
+  .pages {
+    display: inline-flex;
+    gap: 4px;
+    li {
+      border: 1px solid lightgray;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      &.active {
+        background-color: var(--vinted-green);
+        color: white;
+      }
+    }
+  }
+}
 
 .offer-page {
   background-color: #f3f5f5;
