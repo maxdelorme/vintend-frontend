@@ -126,12 +126,19 @@ header {
   display: flex;
   height: 100%;
   padding: 2rem 2rem;
-  justify-content: space-around;
+  justify-content: space-between;
   overflow: hidden;
-  gap: 30px;
 
+  .col-g {
+    width: 60%;
+  }
+  .react-multi-carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .col-g img {
-    height: 100%;
+    width: calc(92% - 91px);
   }
   .col-d {
     background-color: white;
