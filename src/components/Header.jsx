@@ -1,7 +1,15 @@
 import logo from "../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 const Header = ({ search, setSearch }) => {
+  const [currentQueryParameters, setSearchParams] = useSearchParams();
+  // permet de manipuler les query de l'URL via les méthodes .append(), .set(), .delete(), .get(), etc...
+  const newQueryParameters = new URLSearchParams();
+  console.log("in header", search);
+  useEffect(() => {
+    setSearch(search || currentQueryParameters.get("search"));
+  }, []);
   return (
     <header>
       <Link to="/">
@@ -11,7 +19,12 @@ const Header = ({ search, setSearch }) => {
         <input
           value={search}
           onChange={(event) => {
-            setSearch(event.target.value);
+            const searchValue = event.target.value;
+            setSearch(searchValue);
+            if (searchValue)
+              newQueryParameters.set("search", event.target.value);
+            else newQueryParameters.delete("search");
+            setSearchParams(newQueryParameters);
           }}
           type="text"
           placeholder="Recherche des articles"

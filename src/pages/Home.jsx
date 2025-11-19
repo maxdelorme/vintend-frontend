@@ -9,28 +9,34 @@ const Home = ({ search }) => {
   const offerPerPage = 15;
 
   useEffect(() => {
-    getData();
-  }, [search, page]);
-
-  const getData = async () => {
-    try {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers",
-        {
-          params: {
-            title: search,
-            page: page,
-            limit: offerPerPage,
-          },
+    var ignore = false;
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers",
+          {
+            params: {
+              title: search,
+              page: page,
+              limit: offerPerPage,
+            },
+          }
+        );
+        if (!ignore) {
+          setData(response.data);
+          setIsLoading(false);
         }
-      );
-      setData(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
 
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    const response = getData();
+
+    return () => {
+      ignore = true;
+    };
+  }, [search, page]);
 
   if (!isLoading) {
     pages = Math.ceil(data.count / offerPerPage);
