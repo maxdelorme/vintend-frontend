@@ -1,0 +1,68 @@
+form {
+  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 30px;
+  padding: 40px;
+  margin: auto;
+  accent-color: var(--vinted-green);
+
+  h2 {
+    font-weight: 500;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  input {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid lightgrey;
+    padding-left: 10px;
+    padding-top: 6px;
+    min-height: 30px;
+    height: 100%;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 2px solid var(--vinted-green);
+    }
+  }
+
+  label {
+    flex: 0;
+    position: relative;
+    span {
+      position: absolute;
+      color: var(--vinted-green);
+      font-size: 16px;
+      top: 6px;
+      left: 10px;
+    }
+
+    &:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown))
+      span {
+      font-size: 12px;
+      top: -20px;
+      color: var(--vinted-green);
+      left: 0px;
+    }
+
+    &:has(textarea) {
+      flex: 3;
+    }
+  }
+
+  a {
+    color: var(--vinted-green);
+    text-decoration: none;
+
+    p {
+      text-align: center;
+    }
+  }
+}

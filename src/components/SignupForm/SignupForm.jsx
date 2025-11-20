@@ -57,7 +57,7 @@ const SignupForm = ({ setIsAuthenticated }) => {
         </p>
       </div>
 
-      <button type="submit" onClick={handleSubmit}>
+      <button type="submit" onClick={handleSubmit} className="fill-primary">
         S'inscrire
       </button>
       <Link to="/Login">
