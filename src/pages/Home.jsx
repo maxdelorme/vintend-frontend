@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Offer from "../components/Offer";
+import OfferCard from "../components/OfferCard/OfferCard";
 
 const Home = ({ search, range }) => {
   const [data, setData] = useState(null);
@@ -70,7 +70,7 @@ const Home = ({ search, range }) => {
       </nav>
       <section className="listOffers">
         {data.offers.map((item) => (
-          <Offer key={item._id} {...item}></Offer>
+          <OfferCard key={item._id} {...item}></OfferCard>
         ))}
       </section>
     </>
