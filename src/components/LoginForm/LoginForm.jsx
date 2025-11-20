@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const SignupForm = ({ setIsAuthenticated }) => {
-  const navigate = useNavigate();
+const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState({ value: false, message: "" });
 
   const handleSubmit = async (event) => {
@@ -26,7 +25,7 @@ const SignupForm = ({ setIsAuthenticated }) => {
       Cookies.set("token", response.data.token, { expires: 1 });
 
       setIsAuthenticated(true);
-      navigate("/");
+      setModal({ isVisible: false });
     } catch (error) {
       setHasError({
         value: true,

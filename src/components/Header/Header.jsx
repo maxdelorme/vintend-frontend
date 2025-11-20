@@ -5,6 +5,8 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import "./header.css";
 import Cookie from "js-cookie";
+import LoginForm from "../LoginForm/LoginForm";
+import SignupForm from "../SignupForm/SignupForm";
 
 const Header = ({
   search,
@@ -14,6 +16,7 @@ const Header = ({
   setRange,
   isAuthenticated,
   setIsAuthenticated,
+  setModal,
 }) => {
   const newQueryParameters = new URLSearchParams();
   const navigate = useNavigate();
@@ -75,10 +78,36 @@ const Header = ({
           </button>
         ) : (
           <>
-            <button className="outline" onClick={() => navigate("/signup")}>
+            <button
+              className="outline"
+              onClick={() =>
+                setModal({
+                  isVisible: true,
+                  children: (
+                    <SignupForm
+                      setIsAuthenticated={setIsAuthenticated}
+                      setModal={setModal}
+                    ></SignupForm>
+                  ),
+                })
+              }
+            >
               S'inscrire
             </button>
-            <button className="outline" onClick={() => navigate("/login")}>
+            <button
+              className="outline"
+              onClick={() =>
+                setModal({
+                  isVisible: true,
+                  children: (
+                    <LoginForm
+                      setIsAuthenticated={setIsAuthenticated}
+                      setModal={setModal}
+                    ></LoginForm>
+                  ),
+                })
+              }
+            >
               Se connecter
             </button>
           </>

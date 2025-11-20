@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./SignupForm.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
 
-const SignupForm = ({ setIsAuthenticated }) => {
-  const navigate = useNavigate();
+const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState({ value: false, message: "" });
 
   const handleSubmit = async (event) => {
@@ -26,7 +25,7 @@ const SignupForm = ({ setIsAuthenticated }) => {
       );
       Cookies.set("token", response.data.token, { expires: 1 });
       setIsAuthenticated(true);
-      navigate("/");
+      setModal({ isVisible: false });
     } catch (error) {
       setHasError({ value: true, message: error.response.data.message });
     }
@@ -60,8 +59,8 @@ const SignupForm = ({ setIsAuthenticated }) => {
       </div>
       {hasError.value && (
         <p className="error">
-          Erreur d'enregistrement, le server indique : <br />"{hasError.message}
-          "
+          Erreur d'enregistrement, le server indique : <p></p>"
+          {hasError.message}"
         </p>
       )}
       <button type="submit" onClick={handleSubmit} className="fill-primary">
