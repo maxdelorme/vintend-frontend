@@ -4,10 +4,25 @@ import { Link, useNavigate } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import "./header.css";
+import Cookie from "js-cookie";
 
-const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
+const Header = ({
+  search,
+  setSearch,
+  setSearchParams,
+  range,
+  setRange,
+  isAuthenticated,
+  setIsAuthenticated,
+}) => {
   const newQueryParameters = new URLSearchParams();
   const navigate = useNavigate();
+
+  const disconnect = () => {
+    Cookie.remove("token");
+    setIsAuthenticated(false);
+  };
+
   return (
     <header>
       <Link to="/">
@@ -54,11 +69,19 @@ const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
         />
       </label>
       <span>
-        <button className="outline" onClick={() => navigate("/signup")}>
-          S'inscrire
-        </button>
-        <button className="outline">se connecter</button>
-        <button className="fill-primary">vends tes articles</button>
+        {isAuthenticated ? (
+          <button className="alert" onClick={disconnect}>
+            Se déconnecter
+          </button>
+        ) : (
+          <>
+            <button className="outline" onClick={() => navigate("/signup")}>
+              S'inscrire
+            </button>
+            <button className="outline">Se connecter</button>
+          </>
+        )}
+        <button className="fill-primary">Vends tes articles</button>
       </span>
     </header>
   );

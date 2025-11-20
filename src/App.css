@@ -5,6 +5,7 @@
   font-size: clamp(12px, 2.5vw, 18px);
   --header-height: 3rem;
   --vinted-green: #2fb0ba;
+  --alert: rgb(198, 7, 7);
   font-family: sans-serif;
 }
 body {
@@ -33,6 +34,11 @@ button {
     border: 1px solid var(--vinted-green);
     color: white;
     background-color: var(--vinted-green);
+  }
+  &.alert {
+    color: white;
+    background-color: var(--alert);
+    border-color: color-mix(in oklab, var(--alert) 80%, darkgrey 20%);
   }
 }
 

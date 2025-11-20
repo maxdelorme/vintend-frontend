@@ -6,6 +6,7 @@ import Header from "./Header/Header";
 import { useState } from "react";
 import Signup from "../pages/Signup";
 import SignupForm from "./SignupForm/SignupForm";
+import Cookie from "js-cookie";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
@@ -17,7 +18,9 @@ const Main = () => {
     min: queryPriceMin,
     max: queryPriceMax,
   });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    Boolean(Cookie.get("token")) || false
+  );
 
   return (
     <>
@@ -27,6 +30,8 @@ const Main = () => {
         setSearchParams={setSearchParams}
         range={range}
         setRange={setRange}
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
       />
       <main>
         <Routes>
