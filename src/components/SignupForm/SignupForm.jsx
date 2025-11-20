@@ -2,9 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SignupForm.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useState } from "react";
 
 const SignupForm = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
+  const [hasError, setHasError] = useState({ value: false, message: "" });
 
   const handleSubmit = async (event) => {
     try {
@@ -26,7 +28,7 @@ const SignupForm = ({ setIsAuthenticated }) => {
       setIsAuthenticated(true);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      setHasError({ value: true, message: error.response.data.message });
     }
   };
 
@@ -56,7 +58,12 @@ const SignupForm = ({ setIsAuthenticated }) => {
           avoir au moins 18 ans.
         </p>
       </div>
-
+      {hasError.value && (
+        <p className="error">
+          Erreur d'enregistrement, le server indique : <br />"{hasError.message}
+          "
+        </p>
+      )}
       <button type="submit" onClick={handleSubmit} className="fill-primary">
         S'inscrire
       </button>

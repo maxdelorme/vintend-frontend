@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 const SignupForm = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
-  const [hasError, setHasError] = useState({ value: false, errorMessage: "" });
+  const [hasError, setHasError] = useState({ value: false, message: "" });
 
   const handleSubmit = async (event) => {
     try {
@@ -24,15 +24,13 @@ const SignupForm = ({ setIsAuthenticated }) => {
         formData
       );
       Cookies.set("token", response.data.token, { expires: 1 });
-      console.log(response);
 
       setIsAuthenticated(true);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
       setHasError({
         value: true,
-        message: "Erreur de connexion, vérifier votre email ou mot de passe",
+        message: error.response.data.message,
       });
     }
   };
@@ -49,7 +47,11 @@ const SignupForm = ({ setIsAuthenticated }) => {
         <span>Password</span>
         <input type="password" name="password" placeholder="Mot de passe" />
       </label>
-      {hasError.value && <p className="error">{hasError.message}</p>}
+      {hasError.value && (
+        <p className="error">
+          Erreur de connexion, le serveur indique : <br />"{hasError.message}"
+        </p>
+      )}
       <button type="submit" onClick={handleSubmit} className="fill-primary">
         S'inscrire
       </button>
