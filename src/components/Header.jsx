@@ -1,8 +1,8 @@
 import logo from "../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
-import RangeSlider from "react-range-slider-input";
-import "react-range-slider-input/dist/style.css";
+import InputRange from "react-input-range";
+import "react-input-range/lib/css/index.css";
 
 const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
   const newQueryParameters = new URLSearchParams();
@@ -36,19 +36,21 @@ const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
         <MdOutlineSearch />
       </label>
       <label className="range">
-        Prix entre {range[0]} €
-        <RangeSlider
+        Prix&nbsp;entre
+        <InputRange
           value={range}
-          onInput={(range) => {
+          maxValue={100}
+          minValue={0}
+          formatLabel={(value) => `${value} €`}
+          onChange={(range) => {
             setRange(range);
             setSearchParams((prev) => {
-              prev.set("priceMin", range[0]);
-              prev.set("priceMax", range[1]);
+              prev.set("priceMin", range.min);
+              prev.set("priceMax", range.max);
               return prev;
             });
           }}
         />
-        {range[1]}€
       </label>
       <span>
         <button className="outline">S'inscrire</button>

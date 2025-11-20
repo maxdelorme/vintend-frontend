@@ -20,8 +20,8 @@ const Home = ({ search, range }) => {
               title: search,
               page: page,
               limit: offerPerPage,
-              priceMax: range[1],
-              priceMin: range[0],
+              priceMax: range.max,
+              priceMin: range.min,
             },
           }
         );

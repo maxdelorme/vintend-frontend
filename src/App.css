@@ -74,15 +74,31 @@ header {
     align-items: center;
     font-size: 0.8rem;
     color: grey;
+    width: 300px;
+    align-self: self-end;
+    padding-bottom: 0.5rem;
+
     & * {
       transition: none;
     }
     .range-slider {
       width: 237px;
     }
-    .range-slider__range,
-    .range-slider__thumb {
+    .input-range__slider,
+    .input-range__track--active,
+    .input-range__label-container {
       background-color: var(--vinted-green);
+      border-color: var(--vinted-green);
+    }
+    .input-range__label-container {
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem;
+      border-radius: 0.2rem;
+    }
+    .input-range__label--min,
+    .input-range__label--max {
+      display: none;
     }
   }
 }

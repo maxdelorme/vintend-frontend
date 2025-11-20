@@ -11,7 +11,10 @@ const Main = () => {
   const [search, setSearch] = useState(querySearch || "");
   const queryPriceMax = currentQueryParameters.get("priceMax") || 100;
   const queryPriceMin = currentQueryParameters.get("priceMin") || 0;
-  const [range, setRange] = useState([queryPriceMin, queryPriceMax]);
+  const [range, setRange] = useState({
+    min: queryPriceMin,
+    max: queryPriceMax,
+  });
 
   return (
     <>
