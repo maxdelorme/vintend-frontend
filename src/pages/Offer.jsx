@@ -48,7 +48,7 @@ const Offer = () => {
   return isLoading ? (
     <div>Chargement en cours....</div>
   ) : (
-    <div className="offer-page">
+    <section className="offer-page">
       <div className="col-g">
         <Carousel responsive={responsive}>
           {offer.product_pictures &&
@@ -68,19 +68,22 @@ const Offer = () => {
           ))}
         </div>
         <hr></hr>
-        <div className="name">{offer.product_name}</div>
-        <div className="desc">{offer.product_description}</div>
+        <p className="name">{offer.product_name}</p>
+        <p className="desc">{offer.product_description}</p>
         <div className="owner">
           <div className="avatar">
             {offer.owner.account.avatar && (
-              <img src={offer.owner.account.avatar.secure_url} />
+              <img
+                src={offer.owner.account.avatar.secure_url}
+                alt="image du propriétaire"
+              />
             )}
           </div>
-          <div className="username">{offer.owner.account.username}</div>
+          <p className="username">{offer.owner.account.username}</p>
         </div>
         <button className="fill-primary">Acheter</button>
       </div>
-    </div>
+    </section>
   );
 };
 

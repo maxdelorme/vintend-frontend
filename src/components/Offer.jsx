@@ -88,15 +88,15 @@ const Offer = ({
 
   return (
     <Link to={`/offers/${_id}`}>
-      <div className="offer">
-        <div className="name">{product_name}</div>
+      <article className="offer">
+        <p className="name">{product_name}</p>
         <img
           src={product_image.secure_url}
           alt={product_description}
           className="image"
         />
         <div className="price">{product_price} €</div>
-      </div>
+      </article>
     </Link>
   );
 };

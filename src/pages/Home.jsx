@@ -35,7 +35,7 @@ const Home = ({ search, range }) => {
     };
 
     const response = getData();
-
+    // ensure the fetchData are discard even a quicker research is made before the end of the previous slow one
     return () => {
       ignore = true;
     };
@@ -68,11 +68,11 @@ const Home = ({ search, range }) => {
           ))}
         </ol>
       </nav>
-      <div className="listOffers">
+      <section className="listOffers">
         {data.offers.map((item) => (
           <Offer key={item._id} {...item}></Offer>
         ))}
-      </div>
+      </section>
     </>
   );
 };
