@@ -124,6 +124,8 @@ header {
     color: black;
     align-items: flex-start;
     height: 100%;
+    border: 1px solid rgb(237, 237, 237);
+    border-radius: 3px;
 
     &:hover {
       box-shadow: 2px 2px 5px lightgray;

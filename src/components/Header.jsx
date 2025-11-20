@@ -36,7 +36,7 @@ const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
         <MdOutlineSearch />
       </label>
       <label className="range">
-        Prix&nbsp;entre
+        Prix&nbsp;entre&nbsp;
         <InputRange
           value={range}
           maxValue={100}
