@@ -78,7 +78,9 @@ const Header = ({
             <button className="outline" onClick={() => navigate("/signup")}>
               S'inscrire
             </button>
-            <button className="outline">Se connecter</button>
+            <button className="outline" onClick={() => navigate("/login")}>
+              Se connecter
+            </button>
           </>
         )}
         <button className="fill-primary">Vends tes articles</button>

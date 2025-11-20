@@ -65,4 +65,14 @@ form {
       text-align: center;
     }
   }
+
+  .error {
+    background-color: pink;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    color: darkred;
+    font-size: 0.8rem;
+  }
 }

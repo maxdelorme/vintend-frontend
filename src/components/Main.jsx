@@ -7,6 +7,8 @@ import { useState } from "react";
 import Signup from "../pages/Signup";
 import SignupForm from "./SignupForm/SignupForm";
 import Cookie from "js-cookie";
+import LoginForm from "./LoginForm/LoginForm";
+import LoginPage from "../pages/Login";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
@@ -50,6 +52,14 @@ const Main = () => {
               </Signup>
             }
           />
+          <Route
+            path="/login"
+            element={
+              <LoginPage>
+                <LoginForm setIsAuthenticated={setIsAuthenticated} />
+              </LoginPage>
+            }
+          ></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
       </main>
