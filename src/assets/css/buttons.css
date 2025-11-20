@@ -1,0 +1,21 @@
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+
+  &.outline {
+    border: 1px solid var(--vinted-green);
+    background-color: white;
+    color: var(--vinted-green);
+  }
+  &.fill-primary {
+    border: 1px solid var(--vinted-green);
+    color: white;
+    background-color: var(--vinted-green);
+  }
+  &.alert {
+    color: white;
+    background-color: var(--alert);
+    border-color: color-mix(in oklab, var(--alert) 80%, darkgrey 20%);
+  }
+}

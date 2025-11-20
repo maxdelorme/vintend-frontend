@@ -1,3 +1,4 @@
+@import "./assets/css/buttons.css";
 * {
   transition: all 0.3s ease-in-out;
 }
@@ -18,28 +19,6 @@ strong {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-  cursor: pointer;
-
-  &.outline {
-    border: 1px solid var(--vinted-green);
-    background-color: white;
-    color: var(--vinted-green);
-  }
-  &.fill-primary {
-    border: 1px solid var(--vinted-green);
-    color: white;
-    background-color: var(--vinted-green);
-  }
-  &.alert {
-    color: white;
-    background-color: var(--alert);
-    border-color: color-mix(in oklab, var(--alert) 80%, darkgrey 20%);
-  }
 }
 
 .listOffers {
