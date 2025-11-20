@@ -8,9 +8,9 @@ import { useState } from "react";
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
   const querySearch = currentQueryParameters.get("search");
-  const [search, setSearch] = useState(querySearch);
-  const queryPriceMax = currentQueryParameters.get("priceMax");
-  const queryPriceMin = currentQueryParameters.get("priceMin");
+  const [search, setSearch] = useState(querySearch || "");
+  const queryPriceMax = currentQueryParameters.get("priceMax") || 100;
+  const queryPriceMin = currentQueryParameters.get("priceMin") || 0;
   const [range, setRange] = useState([queryPriceMin, queryPriceMax]);
 
   return (
