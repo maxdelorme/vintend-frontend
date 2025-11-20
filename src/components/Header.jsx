@@ -25,7 +25,6 @@ const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
               });
             else {
               setSearchParams((prev) => {
-                console.log(prev);
                 prev.delete("search");
                 return prev;
               });

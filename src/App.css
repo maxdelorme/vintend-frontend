@@ -106,6 +106,8 @@ header {
     align-items: center;
     box-shadow: 2px 2px 5px rgb(237, 237, 237);
     color: black;
+    align-items: flex-start;
+    height: 100%;
 
     &:hover {
       box-shadow: 2px 2px 5px lightgray;
@@ -123,6 +125,23 @@ header {
     }
     .price {
       height: 0.78rem;
+    }
+    .detail {
+      color: lightgrey;
+      font-size: 0.8rem;
+    }
+    .entete {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 0.8rem;
+      color: lightgray;
+      img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        border-radius: 16px;
+      }
     }
   }
 }

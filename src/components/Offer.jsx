@@ -5,6 +5,8 @@ const Offer = ({
   product_price,
   product_image,
   product_description,
+  product_details,
+  owner,
 }) => {
   //   {
   //   "_id": "6919b7bb436ae1fe8f07f42c",
@@ -86,16 +88,36 @@ const Offer = ({
   //   "__v": 0
   // }
 
+  const detailsObject = product_details.reduce((result, item) => {
+    const key = Object.keys(item)[0];
+    result[key] = item[key];
+    return result;
+  }, {});
+
   return (
     <Link to={`/offers/${_id}`}>
       <article className="offer">
-        <p className="name">{product_name}</p>
+        <div className="entete">
+          <img
+            src={owner.account.avatar.secure_url}
+            alt="image du propriétaire"
+          />
+          <p className="name">{owner.account.username}</p>
+        </div>
+
         <img
           src={product_image.secure_url}
           alt={product_description}
           className="image"
         />
         <div className="price">{product_price} €</div>
+        <div className="details">
+          {["TAILLE", "MARQUE"].map((field, index) => (
+            <div key={index} className="detail">
+              {detailsObject[field]}
+            </div>
+          ))}
+        </div>
       </article>
     </Link>
   );
