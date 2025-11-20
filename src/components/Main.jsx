@@ -2,7 +2,7 @@ import { Routes, Route, useSearchParams } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import Offer from "../pages/Offer";
-import Header from "./Header";
+import Header from "./Header/Header";
 import { useState } from "react";
 
 const Main = () => {

@@ -1,8 +1,9 @@
-import logo from "../assets/img/logo.svg";
+import logo from "../../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
+import "./header.css";
 
 const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
   const newQueryParameters = new URLSearchParams();
