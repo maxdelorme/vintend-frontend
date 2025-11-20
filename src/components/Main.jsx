@@ -4,6 +4,8 @@ import NotFound from "../pages/NotFound";
 import Offer from "../pages/Offer";
 import Header from "./Header/Header";
 import { useState } from "react";
+import Signup from "../pages/Signup";
+import SignupForm from "./SignupForm/SignupForm";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
@@ -15,6 +17,7 @@ const Main = () => {
     min: queryPriceMin,
     max: queryPriceMax,
   });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <>
@@ -32,6 +35,16 @@ const Main = () => {
             element={<Home search={search} range={range} />}
           ></Route>
           <Route path="/offers/:id" element={<Offer />}></Route>
+          <Route
+            path="/signup"
+            element={
+              <Signup>
+                <SignupForm
+                  setIsAuthenticated={setIsAuthenticated}
+                ></SignupForm>
+              </Signup>
+            }
+          />
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
       </main>

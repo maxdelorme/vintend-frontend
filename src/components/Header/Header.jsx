@@ -1,13 +1,13 @@
 import logo from "../../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import "./header.css";
 
 const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
   const newQueryParameters = new URLSearchParams();
-
+  const navigate = useNavigate();
   return (
     <header>
       <Link to="/">
@@ -54,7 +54,9 @@ const Header = ({ search, setSearch, setSearchParams, range, setRange }) => {
         />
       </label>
       <span>
-        <button className="outline">S'inscrire</button>
+        <button className="outline" onClick={() => navigate("/signup")}>
+          S'inscrire
+        </button>
         <button className="outline">se connecter</button>
         <button className="fill-primary">vends tes articles</button>
       </span>
