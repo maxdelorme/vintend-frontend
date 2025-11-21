@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import OfferCard from "../components/OfferCard/OfferCard";
 
-const Home = ({ search, range }) => {
+const Home = ({ search, range, sort }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -22,6 +22,7 @@ const Home = ({ search, range }) => {
               limit: offerPerPage,
               priceMax: range.max,
               priceMin: range.min,
+              sort: sort ? "price-desc" : "price-asc",
             },
           }
         );
@@ -39,7 +40,7 @@ const Home = ({ search, range }) => {
     return () => {
       ignore = true;
     };
-  }, [search, page, range]);
+  }, [search, page, range, sort]);
 
   if (!isLoading) {
     pages = Math.ceil(data.count / offerPerPage);

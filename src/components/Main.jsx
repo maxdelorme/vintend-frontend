@@ -12,6 +12,7 @@ const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
   const querySearch = currentQueryParameters.get("search");
   const [search, setSearch] = useState(querySearch || "");
+  const [sort, setSort] = useState(false);
   const queryPriceMax = currentQueryParameters.get("priceMax") || 100;
   const queryPriceMin = currentQueryParameters.get("priceMin") || 0;
   const [range, setRange] = useState({
@@ -21,6 +22,7 @@ const Main = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     Boolean(Cookie.get("token")) || false
   );
+
   const [modal, setModal] = useState({
     isVisible: false,
     children: "",
@@ -37,12 +39,14 @@ const Main = () => {
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
         setModal={setModal}
+        sort={sort}
+        setSort={setSort}
       />
       <main>
         <Routes>
           <Route
             path="/"
-            element={<Home search={search} range={range} />}
+            element={<Home search={search} range={range} sort={sort} />}
           ></Route>
           <Route path="/offers/:id" element={<Offer />}></Route>
           <Route path="/*" element={<NotFound />}></Route>

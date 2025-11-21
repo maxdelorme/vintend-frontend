@@ -1,0 +1,50 @@
+.switch {
+  --size: 6px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: calc(2 * var(--size));
+  /* the horizontal rectangle */
+  &::before {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    content: "";
+    background-color: gray;
+    width: calc(9 * var(--size));
+    height: calc(calc(3.5 * var(--size)) + 1px);
+    position: relative;
+    border-radius: calc(1.5 * var(--size) + 2px);
+  }
+  /* the radio */
+  &::after {
+    transition: all 0.5s ease-in-out;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 1px;
+    content: "";
+    background-color: lightgray;
+    width: calc(3.5 * var(--size));
+    height: calc(3.5 * var(--size));
+    border-radius: calc(2 * var(--size));
+    box-shadow: 5px 5px 10px grey;
+    content: "▲";
+    font-size: calc(3 * var(--size));
+    color: black;
+    rotate: 0;
+  }
+
+  &.active {
+    &::before {
+      background-color: color-mix(in oklab, gray 25%, var(--vinted-green));
+    }
+    &::after {
+      left: calc(calc(9 * var(--size)) - calc(4 * var(--size)));
+      background-color: color-mix(in oklab, lightgray 25%, var(--vinted-green));
+      rotate: 180deg;
+      box-shadow: -5px -5px 10px grey;
+    }
+  }
+}

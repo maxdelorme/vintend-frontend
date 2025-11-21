@@ -7,6 +7,7 @@ import "./header.css";
 import Cookie from "js-cookie";
 import LoginForm from "../LoginForm/LoginForm";
 import SignupForm from "../SignupForm/SignupForm";
+import Switch from "../switch/Switch";
 
 const Header = ({
   search,
@@ -17,6 +18,8 @@ const Header = ({
   isAuthenticated,
   setIsAuthenticated,
   setModal,
+  sort,
+  setSort,
 }) => {
   const disconnect = () => {
     Cookie.remove("token");
@@ -28,6 +31,10 @@ const Header = ({
       <Link to="/">
         <img src={logo} />
       </Link>
+      <label className="switchLabel">
+        trier par{" "}
+        <Switch isON={sort} setIsON={setSort} size="10px" color="#FF0000" />
+      </label>
       <label>
         <input
           value={search}
