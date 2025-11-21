@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
-  const [hasError, setHasError] = useState({ value: false, message: "" });
+  const [hasError, setHasError] = useState("");
 
   const handleSubmit = async (event) => {
     try {
@@ -27,7 +27,9 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
       setIsAuthenticated(true);
       setModal({ isVisible: false });
     } catch (error) {
-      setHasError({ value: true, message: error.response.data.message });
+      error.response
+        ? setHasError(error.response.data.message)
+        : console.log(error.message);
     }
   };
 
@@ -57,10 +59,9 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           avoir au moins 18 ans.
         </p>
       </div>
-      {hasError.value && (
+      {hasError && (
         <p className="error">
-          Erreur d'enregistrement, le server indique : <p></p>"
-          {hasError.message}"
+          Erreur d'enregistrement, le server indique : "{hasError}"
         </p>
       )}
       <button type="submit" onClick={handleSubmit} className="fill-primary">
