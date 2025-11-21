@@ -5,18 +5,22 @@ import Cookies from "js-cookie";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState("");
+  const [formData, setformData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (event) => {
+    const key = event.target.name;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    setformData({ ...formData, [key]: value });
+  };
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const formElements = event.target.form.elements;
-      let formData = {};
-      for (let i = 0; i < formElements.length; i++) {
-        const { name, type, value, checked } = formElements.item(i);
-        if (name) {
-          formData[name] = type === "checkbox" ? checked : value;
-        }
-      }
 
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
@@ -38,23 +42,35 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
   };
 
   return (
-    <form id="LoginForm">
+    <form id="LoginForm" onSubmit={handleSubmit}>
       <h2>Se Connecter</h2>
 
       <label>
         <span>Email</span>
-        <input type="text" name="email" placeholder="Email" />
+        <input
+          type="text"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+        />
       </label>
       <label>
         <span>Password</span>
-        <input type="password" name="password" placeholder="Mot de passe" />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Mot de passe"
+        />
       </label>
       {hasError && (
         <p className="error">
           Erreur de connexion, le serveur indique : <br />"{hasError}"
         </p>
       )}
-      <button type="submit" onClick={handleSubmit} className="fill-primary">
+      <button type="submit" className="fill-primary">
         S'inscrire
       </button>
       <Link to="/signup">
