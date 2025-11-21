@@ -6,18 +6,25 @@ import { useState } from "react";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState("");
+  const [formData, setformData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    newsletter: false,
+  });
+
+  const handleChange = (event) => {
+    const key = event.target.name;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    setformData({ ...formData, [key]: value });
+  };
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const formElements = event.target.form.elements;
-      let formData = {};
-      for (let i = 0; i < formElements.length; i++) {
-        const { name, type, value, checked } = formElements.item(i);
-        if (name) {
-          formData[name] = type === "checkbox" ? checked : value;
-        }
-      }
 
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
@@ -34,23 +41,46 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
   };
 
   return (
-    <form id="SignupForm">
+    <form id="SignupForm" onSubmit={handleSubmit}>
       <h2>S'inscrire</h2>
       <label>
         <span>Nom d'utilisateur</span>
-        <input type="text" name="username" placeholder="Nom d'utilisateur" />
+        <input
+          type="text"
+          name="username"
+          placeholder="Nom d'utilisateur"
+          value={formData.username}
+          onChange={handleChange}
+        />
       </label>
       <label>
         <span>Email</span>
-        <input type="text" name="email" placeholder="Email" />
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
       </label>
       <label>
         <span>Password</span>
-        <input type="password" name="password" placeholder="Mot de passe" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          value={formData.password}
+          onChange={handleChange}
+        />
       </label>
       <div>
         <div className="newletter">
-          <input type="checkbox" name="newsletter" />
+          <input
+            type="checkbox"
+            name="newsletter"
+            checked={formData.newsletter}
+            onChange={handleChange}
+          />
           <span>S'inscrire à la newletter</span>
         </div>{" "}
         <p>
@@ -64,7 +94,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           Erreur d'enregistrement, le server indique : "{hasError}"
         </p>
       )}
-      <button type="submit" onClick={handleSubmit} className="fill-primary">
+      <button type="submit" className="fill-primary">
         S'inscrire
       </button>
       <Link to="/Login">
