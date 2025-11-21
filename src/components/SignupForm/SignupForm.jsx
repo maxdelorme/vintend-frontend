@@ -3,6 +3,7 @@ import "./SignupForm.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import handleChange from "../../assets/utils/handleChange";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState("");
@@ -12,15 +13,6 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
     password: "",
     newsletter: false,
   });
-
-  const handleChange = (event) => {
-    const key = event.target.name;
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-    setformData({ ...formData, [key]: value });
-  };
 
   const handleSubmit = async (event) => {
     try {
@@ -50,7 +42,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           name="username"
           placeholder="Nom d'utilisateur"
           value={formData.username}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, formData, setformData)}
         />
       </label>
       <label>
@@ -60,7 +52,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           name="email"
           placeholder="Email"
           value={formData.email}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, formData, setformData)}
         />
       </label>
       <label>
@@ -70,7 +62,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           name="password"
           placeholder="Mot de passe"
           value={formData.password}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, formData, setformData)}
         />
       </label>
       <div>
@@ -79,7 +71,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
             type="checkbox"
             name="newsletter"
             checked={formData.newsletter}
-            onChange={handleChange}
+            onChange={(event) => handleChange(event, formData, setformData)}
           />
           <span>S'inscrire à la newletter</span>
         </div>{" "}
