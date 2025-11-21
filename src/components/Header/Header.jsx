@@ -18,9 +18,6 @@ const Header = ({
   setIsAuthenticated,
   setModal,
 }) => {
-  const newQueryParameters = new URLSearchParams();
-  const navigate = useNavigate();
-
   const disconnect = () => {
     Cookie.remove("token");
     setIsAuthenticated(false);
