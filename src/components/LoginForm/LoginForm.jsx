@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
-  const [hasError, setHasError] = useState({ value: false, message: "" });
+  const [hasError, setHasError] = useState("");
 
   const handleSubmit = async (event) => {
     try {
@@ -27,10 +27,13 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
       setIsAuthenticated(true);
       setModal({ isVisible: false });
     } catch (error) {
-      setHasError({
-        value: true,
-        message: error.response.data.message,
-      });
+      error.response
+        ? setHasError(
+            error.response.data.error
+              ? error.response.data.error
+              : error.response.data.message
+          )
+        : console.log(error.message);
     }
   };
 
@@ -46,9 +49,9 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
         <span>Password</span>
         <input type="password" name="password" placeholder="Mot de passe" />
       </label>
-      {hasError.value && (
+      {hasError && (
         <p className="error">
-          Erreur de connexion, le serveur indique : <br />"{hasError.message}"
+          Erreur de connexion, le serveur indique : <br />"{hasError}"
         </p>
       )}
       <button type="submit" onClick={handleSubmit} className="fill-primary">
