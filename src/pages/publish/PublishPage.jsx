@@ -15,6 +15,7 @@ const PublishPage = ({
 }) => {
   // console.log(setModal);
   useEffect(() => {
+    // display modal if unauthenticated
     if (!isAuthenticated) {
       setModal({
         isVisible: true,
@@ -25,7 +26,6 @@ const PublishPage = ({
           ></LoginForm>
         ),
       });
-      // navigate({ pathname: "/" });
     }
   }, [isAuthenticated, modal.isVisible]);
 
@@ -34,6 +34,7 @@ const PublishPage = ({
 
   const onSubmit = async (formData) => {
     try {
+      //because formData do not provide value if the checkbox is unchecked
       formData.set("switch", Boolean(formData.get("switch")));
       const token = Cookies.get("token");
 
@@ -47,6 +48,7 @@ const PublishPage = ({
     }
   };
 
+  // get url of preview images
   let previewUrl = [];
   if (formState.picture) {
     const formData = new FormData(form.current);
@@ -96,6 +98,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="title"
+            value={form.title}
             name="title"
           />
         </label>
@@ -103,6 +106,7 @@ const PublishPage = ({
           <span>Descris ton article</span>
           <textarea
             placeholder="descripton"
+            value={form.description}
             name="description"
             onChange={(event) => handleChange(event, formState, setFormState)}
           />
@@ -114,6 +118,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="title"
+            value={form.brand}
             name="brand"
           />
         </label>
@@ -122,6 +127,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="size"
+            value={form.size}
             name="size"
           />
         </label>
@@ -130,6 +136,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="color"
+            value={form.color}
             name="color"
           />
         </label>
@@ -138,6 +145,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="condition"
+            value={form.condition}
             name="condition"
           />
         </label>
@@ -146,6 +154,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="city"
+            value={form.city}
             name="city"
           />
         </label>
@@ -156,6 +165,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             placeholder="price"
+            value={form.price}
             name="price"
           />
           <em>€</em>
@@ -164,6 +174,7 @@ const PublishPage = ({
           <input
             onChange={(event) => handleChange(event, formState, setFormState)}
             type="checkbox"
+            checked={form.switch}
             name="switch"
           />
           <span>Je suis intéressé par des échanges</span>
