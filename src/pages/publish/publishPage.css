@@ -19,7 +19,15 @@
       text-wrap: nowrap;
     }
   }
-
+  section {
+    padding: 0;
+    box-shadow: none;
+    div[role="presentation"] {
+      border: 2px dashed lightgrey;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
   .previews {
     display: flex;
     gap: 5px;

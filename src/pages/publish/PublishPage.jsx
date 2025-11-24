@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import handleChange from "../../assets/utils/handleChange";
 import { useState, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
+import Dropzone from "react-dropzone";
 
 const PublishPage = ({
   modal,
@@ -31,6 +32,7 @@ const PublishPage = ({
 
   const [formState, setFormState] = useState({});
   const form = useRef();
+  const hiddenInput = useRef();
 
   const onSubmit = async (formData) => {
     try {
@@ -60,6 +62,30 @@ const PublishPage = ({
     <form className="publishForm" action={onSubmit} ref={form}>
       <h2>Vends ton article</h2>
       <section className="upload">
+        <Dropzone
+          name="dropfiles"
+          onDrop={(acceptedFiles) => {
+            console.log(acceptedFiles);
+            // Note the specific way we need to munge the file into the hidden input
+            // https://stackoverflow.com/a/68182158/1068446
+            let dataTransfer = new DataTransfer();
+            acceptedFiles.forEach((file) => {
+              dataTransfer.items.add(file);
+            });
+            hiddenInput.current.files = dataTransfer.files;
+            console.log(new FormData(form.current));
+            setFormState({ ...formState, picture: dataTransfer.files });
+          }}
+        >
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p>Drag 'n' drop some files here, or click to select files</p>
+              </div>
+            </section>
+          )}
+        </Dropzone>
         <label>
           {formState.picture && (
             <div className="previews">
@@ -89,6 +115,7 @@ const PublishPage = ({
             type="file"
             name="picture"
             multiple
+            ref={hiddenInput}
           ></input>
         </label>
       </section>
