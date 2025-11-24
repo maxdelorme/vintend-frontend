@@ -52,7 +52,7 @@ const PublishPage = ({
 
   // get url of preview images
   let previewUrl = [];
-  if (formState.picture) {
+  if (formState.picture && formState.picture.length) {
     const formData = new FormData(form.current);
     const previews = formData.getAll("picture");
     previewUrl = previews.map((preview) => URL.createObjectURL(preview));
@@ -65,15 +65,13 @@ const PublishPage = ({
         <Dropzone
           name="dropfiles"
           onDrop={(acceptedFiles) => {
-            console.log(acceptedFiles);
             // Note the specific way we need to munge the file into the hidden input
             // https://stackoverflow.com/a/68182158/1068446
-            let dataTransfer = new DataTransfer();
+            const dataTransfer = new DataTransfer();
             acceptedFiles.forEach((file) => {
               dataTransfer.items.add(file);
             });
             hiddenInput.current.files = dataTransfer.files;
-            console.log(new FormData(form.current));
             setFormState({ ...formState, picture: dataTransfer.files });
           }}
         >
@@ -92,17 +90,32 @@ const PublishPage = ({
               {previewUrl.map((url, index) => (
                 <div key={index} className="preview">
                   <img src={url}></img>
+                  <div
+                    className="closeButton"
+                    index={index}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      // recreate a FileList
+                      // Note the specific way we need to munge the file into the hidden input
+                      // https://stackoverflow.com/a/68182158/1068446
+                      const dataTransfer = new DataTransfer();
+                      let files = hiddenInput.current.files;
+                      for (let i = 0; i < files.length; i++) {
+                        if (i !== index) {
+                          dataTransfer.items.add(files[i]);
+                        }
+                      }
+                      hiddenInput.current.files = dataTransfer.files;
+                      setFormState({
+                        ...formState,
+                        picture: [...dataTransfer.files],
+                      });
+                    }}
+                  >
+                    <IoMdClose />
+                  </div>
                 </div>
               ))}
-              <div
-                className="closeButton"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setFormState({ ...formState, picture: null });
-                }}
-              >
-                <IoMdClose />
-              </div>
             </div>
           )}
           <div className="btn outline">
