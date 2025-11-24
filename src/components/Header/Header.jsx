@@ -1,6 +1,6 @@
 import logo from "../../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import "./header.css";
@@ -25,6 +25,8 @@ const Header = ({
     Cookies.remove("token");
     setIsAuthenticated(false);
   };
+
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -52,6 +54,7 @@ const Header = ({
                 return prev;
               });
             }
+            navigate("/");
           }}
           type="text"
           placeholder="Recherche des articles"
