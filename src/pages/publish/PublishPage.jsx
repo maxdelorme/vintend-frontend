@@ -47,11 +47,11 @@ const PublishPage = ({
     }
   };
 
-  let previewUrl = "";
+  let previewUrl = [];
   if (formState.picture) {
     const formData = new FormData(form.current);
-    const preview = formData.get("picture");
-    previewUrl = URL.createObjectURL(preview);
+    const previews = formData.getAll("picture");
+    previewUrl = previews.map((preview) => URL.createObjectURL(preview));
   }
 
   return (
@@ -60,8 +60,12 @@ const PublishPage = ({
       <section className="upload">
         <label>
           {formState.picture && (
-            <>
-              <img src={previewUrl} className="preview"></img>
+            <div className="previews">
+              {previewUrl.map((url, index) => (
+                <div key={index} className="preview">
+                  <img src={url}></img>
+                </div>
+              ))}
               <div
                 className="closeButton"
                 onClick={(event) => {
@@ -71,15 +75,18 @@ const PublishPage = ({
               >
                 <IoMdClose />
               </div>
-            </>
+            </div>
           )}
           <div className="btn outline">
             {formState.picture ? "Remplace ta photo" : "+ Ajoute une photo"}
           </div>
           <input
-            onChange={(event) => handleChange(event, formState, setFormState)}
+            onChange={(event) =>
+              setFormState({ ...formState, picture: [...event.target.files] })
+            }
             type="file"
             name="picture"
+            multiple
           ></input>
         </label>
       </section>
