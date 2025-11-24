@@ -1,10 +1,10 @@
 import logo from "../../assets/img/logo.svg";
 import { MdOutlineSearch } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import "./header.css";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 import LoginForm from "../LoginForm/LoginForm";
 import SignupForm from "../SignupForm/SignupForm";
 import Switch from "../switch/Switch";
@@ -22,7 +22,7 @@ const Header = ({
   setSort,
 }) => {
   const disconnect = () => {
-    Cookie.remove("token");
+    Cookies.remove("token");
     setIsAuthenticated(false);
   };
 
