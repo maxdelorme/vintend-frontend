@@ -116,7 +116,9 @@ const Header = ({
             </button>
           </>
         )}
-        <button className="fill-primary">Vends tes articles</button>
+        <button className="fill-primary">
+          <Link to="/publish">Vends tes articles</Link>
+        </button>
       </span>
     </header>
   );

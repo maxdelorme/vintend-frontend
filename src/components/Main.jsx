@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import Cookie from "js-cookie";
 import Modal from "./Modal/Modal";
+import PublishPage from "../pages/publish/PublishPage";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
@@ -48,8 +49,19 @@ const Main = () => {
             path="/"
             element={<Home search={search} range={range} sort={sort} />}
           ></Route>
-          <Route path="/offers/:id" element={<Offer />}></Route>
-          <Route path="/*" element={<NotFound />}></Route>
+          <Route path="/offers/:id" element={<Offer />} />
+          <Route
+            path="/publish"
+            element={
+              <PublishPage
+                isAuthenticated={isAuthenticated}
+                setModal={setModal}
+                modal={modal}
+                setIsAuthenticated={setIsAuthenticated}
+              />
+            }
+          />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </main>
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}

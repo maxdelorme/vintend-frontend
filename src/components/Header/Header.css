@@ -74,4 +74,8 @@ header {
     color: grey;
     width: 130px;
   }
+  button.fill-primary > a {
+    color: white;
+    text-decoration: none;
+  }
 }
