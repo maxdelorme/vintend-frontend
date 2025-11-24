@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./offerCard.css";
+
 const OfferCard = ({
   _id,
   product_name,
