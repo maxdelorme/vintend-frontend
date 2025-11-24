@@ -5,6 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import handleChange from "../../assets/utils/handleChange";
 import { useState, useRef } from "react";
+import { IoMdClose } from "react-icons/io";
 
 const PublishPage = ({
   modal,
@@ -57,8 +58,21 @@ const PublishPage = ({
     <form className="publishForm" action={onSubmit} ref={form}>
       <h2>Vends ton article</h2>
       <section className="upload">
-        {formState.picture && <img src={previewUrl} className="preview"></img>}
         <label>
+          {formState.picture && (
+            <>
+              <img src={previewUrl} className="preview"></img>
+              <div
+                className="closeButton"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setFormState({ ...formState, picture: null });
+                }}
+              >
+                <IoMdClose />
+              </div>
+            </>
+          )}
           <div className="btn outline">
             {formState.picture ? "Remplace ta photo" : "+ Ajoute une photo"}
           </div>
