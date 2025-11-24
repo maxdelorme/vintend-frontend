@@ -21,7 +21,7 @@ const OfferCard = ({
       <article className="offerCard">
         <div className="entete">
           <img
-            src={owner.account.avatar.secure_url}
+            src={owner.account.avatar && owner.account.avatar.secure_url}
             alt="image du propriétaire"
           />
           <p className="name">{owner.account.username}</p>
