@@ -45,6 +45,7 @@
       background-color: color-mix(in oklab, lightgray 25%, var(--vinted-green));
       rotate: 180deg;
       box-shadow: -5px -5px 10px grey;
+      color: white;
     }
   }
 }
