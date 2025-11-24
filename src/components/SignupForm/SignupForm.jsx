@@ -7,7 +7,7 @@ import handleChange from "../../assets/utils/handleChange";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState("");
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
@@ -42,7 +42,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           name="username"
           placeholder="Nom d'utilisateur"
           value={formData.username}
-          onChange={(event) => handleChange(event, formData, setformData)}
+          onChange={(event) => handleChange(event, formData, setFormData)}
         />
       </label>
       <label>
@@ -52,7 +52,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           name="email"
           placeholder="Email"
           value={formData.email}
-          onChange={(event) => handleChange(event, formData, setformData)}
+          onChange={(event) => handleChange(event, formData, setFormData)}
         />
       </label>
       <label>
@@ -62,7 +62,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
           name="password"
           placeholder="Mot de passe"
           value={formData.password}
-          onChange={(event) => handleChange(event, formData, setformData)}
+          onChange={(event) => handleChange(event, formData, setFormData)}
         />
       </label>
       <div>
@@ -71,7 +71,7 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
             type="checkbox"
             name="newsletter"
             checked={formData.newsletter}
-            onChange={(event) => handleChange(event, formData, setformData)}
+            onChange={(event) => handleChange(event, formData, setFormData)}
           />
           <span>S'inscrire à la newletter</span>
         </div>{" "}
