@@ -35,7 +35,7 @@ const Home = ({ search, range, sort }) => {
       }
     };
 
-    const response = getData();
+    getData();
     // ensure the fetchData are discard even a quicker research is made before the end of the previous slow one
     return () => {
       ignore = true;
