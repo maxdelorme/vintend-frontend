@@ -45,41 +45,45 @@ const Main = () => {
         sort={sort}
         setSort={setSort}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home search={search} range={range} sort={sort} />}
-        ></Route>
-        <Route
-          path="/offers/:id"
-          element={<Offer basket={basket} setBasket={setBasket} />}
-        />
-        <Route
-          path="/publish"
-          element={
-            <PublishPage
-              isAuthenticated={isAuthenticated}
-              setModal={setModal}
-              modal={modal}
-              setIsAuthenticated={setIsAuthenticated}
+      <main>
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home search={search} range={range} sort={sort} />}
+            ></Route>
+            <Route
+              path="/offers/:id"
+              element={<Offer basket={basket} setBasket={setBasket} />}
             />
-          }
-        />
-        <Route
-          path="/paiement"
-          element={
-            <PaiementPage
-              isAuthenticated={isAuthenticated}
-              setModal={setModal}
-              modal={modal}
-              setIsAuthenticated={setIsAuthenticated}
-              basket={basket}
-              setBasket={setBasket}
+            <Route
+              path="/publish"
+              element={
+                <PublishPage
+                  isAuthenticated={isAuthenticated}
+                  setModal={setModal}
+                  modal={modal}
+                  setIsAuthenticated={setIsAuthenticated}
+                />
+              }
             />
-          }
-        />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+            <Route
+              path="/paiement"
+              element={
+                <PaiementPage
+                  isAuthenticated={isAuthenticated}
+                  setModal={setModal}
+                  modal={modal}
+                  setIsAuthenticated={setIsAuthenticated}
+                  basket={basket}
+                  setBasket={setBasket}
+                />
+              }
+            />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </main>
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}
     </>
   );

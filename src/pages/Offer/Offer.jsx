@@ -53,54 +53,50 @@ const Offer = ({ basket, setBasket }) => {
   return isLoading ? (
     <div>Chargement en cours....</div>
   ) : (
-    <main className="with-bg">
-      <div className="container">
-        <section className="offer-page">
-          <div className="pictCol">
-            <Carousel responsive={responsive}>
-              {offer.product_pictures &&
-                offer.product_pictures.map((item, index) => (
-                  <img key={item} src={item.secure_url} />
-                ))}
-            </Carousel>
-          </div>
-          <div className="offerDetailsCol">
-            <div className="price">{offer.product_price} €</div>
-            <div className="details">
-              {offer.product_details.map((detail, index) => (
-                <div key={index}>
-                  <p>{Object.keys(detail)[0]}</p>
-                  <div className="detail">{detail[Object.keys(detail)[0]]}</div>
-                </div>
-              ))}
-            </div>
-            <hr></hr>
-            <p className="name">{offer.product_name}</p>
-            <p className="desc">{offer.product_description}</p>
-            <div className="owner">
-              <div className="avatar">
-                {offer.owner.account.avatar && (
-                  <img
-                    src={offer.owner.account.avatar.secure_url}
-                    alt="image du propriétaire"
-                  />
-                )}
-              </div>
-              <p className="username">{offer.owner.account.username}</p>
-            </div>
-            <button
-              className="fill-primary"
-              onClick={() => {
-                setBasket([...basket, offer]);
-                navigate("/paiement");
-              }}
-            >
-              Acheter
-            </button>
-          </div>
-        </section>
+    <section className="offer-page">
+      <div className="pictCol">
+        <Carousel responsive={responsive}>
+          {offer.product_pictures &&
+            offer.product_pictures.map((item, index) => (
+              <img key={item} src={item.secure_url} />
+            ))}
+        </Carousel>
       </div>
-    </main>
+      <div className="offerDetailsCol">
+        <div className="price">{offer.product_price} €</div>
+        <div className="details">
+          {offer.product_details.map((detail, index) => (
+            <div key={index}>
+              <p>{Object.keys(detail)[0]}</p>
+              <div className="detail">{detail[Object.keys(detail)[0]]}</div>
+            </div>
+          ))}
+        </div>
+        <hr></hr>
+        <p className="name">{offer.product_name}</p>
+        <p className="desc">{offer.product_description}</p>
+        <div className="owner">
+          <div className="avatar">
+            {offer.owner.account.avatar && (
+              <img
+                src={offer.owner.account.avatar.secure_url}
+                alt="image du propriétaire"
+              />
+            )}
+          </div>
+          <p className="username">{offer.owner.account.username}</p>
+        </div>
+        <button
+          className="fill-primary"
+          onClick={() => {
+            setBasket([...basket, offer]);
+            navigate("/paiement");
+          }}
+        >
+          Acheter
+        </button>
+      </div>
+    </section>
   );
 };
 

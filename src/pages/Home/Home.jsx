@@ -15,6 +15,14 @@ const Home = ({ search, range, sort }) => {
 
   //reset page if search and range change
   useEffect(() => {
+    const rootClassList = document.querySelector("#root").classList;
+    rootClassList.remove("with-bg");
+    return () => {
+      const rootClassList = document.querySelector("#root").classList;
+      rootClassList.add("with-bg");
+    };
+  }, []);
+  useEffect(() => {
     setPage(1);
   }, [search, range]);
   useEffect(() => {
@@ -59,45 +67,43 @@ const Home = ({ search, range, sort }) => {
   return isLoading ? (
     <div>Chargement en cours....</div>
   ) : (
-    <main>
-      <div className="container">
-        <nav>
-          <span className="numberResponses">
-            <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
-          </span>
-          Pages :{" "}
-          <ol className="pages">
-            {new Array(pages).fill("").map((item, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  setPage(index + 1);
-                  if (page)
-                    setQueryParams((prev) => {
-                      prev.set("page", index + 1);
-                      return prev;
-                    });
-                  else {
-                    setQueryParams((prev) => {
-                      prev.delete("page");
-                      return prev;
-                    });
-                  }
-                }}
-                className={page === index + 1 ? "active" : ""}
-              >
-                {index + 1}
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <section className="listOffers">
-          {data.offers.map((item) => (
-            <OfferCard key={item._id} {...item}></OfferCard>
+    <>
+      <nav>
+        <span className="numberResponses">
+          <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
+        </span>
+        Pages :{" "}
+        <ol className="pages">
+          {new Array(pages).fill("").map((item, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                setPage(index + 1);
+                if (page)
+                  setQueryParams((prev) => {
+                    prev.set("page", index + 1);
+                    return prev;
+                  });
+                else {
+                  setQueryParams((prev) => {
+                    prev.delete("page");
+                    return prev;
+                  });
+                }
+              }}
+              className={page === index + 1 ? "active" : ""}
+            >
+              {index + 1}
+            </li>
           ))}
-        </section>
-      </div>
-    </main>
+        </ol>
+      </nav>
+      <section className="listOffers">
+        {data.offers.map((item) => (
+          <OfferCard key={item._id} {...item}></OfferCard>
+        ))}
+      </section>
+    </>
   );
 };
 
