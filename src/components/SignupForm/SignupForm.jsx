@@ -3,7 +3,7 @@ import "./SignupForm.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import handleChange from "../../assets/utils/handleChange";
+import handleChange from "../../utils/handleChange";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState("");

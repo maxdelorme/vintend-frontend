@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import handleChange from "../../assets/utils/handleChange";
+import handleChange from "../../utils/handleChange";
 
 const SignupForm = ({ setIsAuthenticated, setModal }) => {
   const [hasError, setHasError] = useState("");

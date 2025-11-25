@@ -3,7 +3,7 @@ import "./publishPage.css";
 import { useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import handleChange from "../../assets/utils/handleChange";
+import handleChange from "../../utils/handleChange";
 import { useState, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import Dropzone from "react-dropzone";
