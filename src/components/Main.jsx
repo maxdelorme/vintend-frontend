@@ -65,7 +65,19 @@ const Main = () => {
             />
           }
         />
-        <Route path="/paiement" element={<PaiementPage />} />
+        <Route
+          path="/paiement"
+          element={
+            <PaiementPage
+              isAuthenticated={isAuthenticated}
+              setModal={setModal}
+              modal={modal}
+              setIsAuthenticated={setIsAuthenticated}
+              basket={basket}
+              setBasket={setBasket}
+            />
+          }
+        />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}
