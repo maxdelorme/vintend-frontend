@@ -17,6 +17,6 @@ button {
   &.alert {
     color: white;
     background-color: var(--alert);
-    border-color: color-mix(in oklab, var(--alert) 80%, darkgrey 20%);
+    border: 0;
   }
 }
