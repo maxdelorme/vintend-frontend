@@ -67,7 +67,7 @@ const PublishPage = ({
   }
 
   return (
-    <form className=" publishForm" action={onSubmit} ref={form}>
+    <form className="publishForm" action={onSubmit} ref={form}>
       <h2>Vends ton article</h2>
       <section className="upload">
         <Dropzone
