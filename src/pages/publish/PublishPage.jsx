@@ -56,6 +56,8 @@ const PublishPage = ({
     const formData = new FormData(form.current);
     const previews = formData.getAll("picture");
     previewUrl = previews.map((preview) => URL.createObjectURL(preview));
+  } else {
+    formState.picture = null;
   }
 
   return (
@@ -76,61 +78,59 @@ const PublishPage = ({
           }}
         >
           {({ getRootProps, getInputProps }) => (
-            <section>
+            <div className="dropZone">
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
+                <p>Depose une photo ici , ou clique pour ajouter tes photos</p>
               </div>
-            </section>
-          )}
-        </Dropzone>
-        <label>
-          {formState.picture && (
-            <div className="previews">
-              {previewUrl.map((url, index) => (
-                <div key={index} className="preview">
-                  <img src={url}></img>
-                  <div
-                    className="closeButton"
-                    index={index}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      // recreate a FileList
-                      // Note the specific way we need to munge the file into the hidden input
-                      // https://stackoverflow.com/a/68182158/1068446
-                      const dataTransfer = new DataTransfer();
-                      let files = hiddenInput.current.files;
-                      for (let i = 0; i < files.length; i++) {
-                        if (i !== index) {
-                          dataTransfer.items.add(files[i]);
-                        }
-                      }
-                      hiddenInput.current.files = dataTransfer.files;
-                      setFormState({
-                        ...formState,
-                        picture: [...dataTransfer.files],
-                      });
-                    }}
-                  >
-                    <IoMdClose />
-                  </div>
+              {formState.picture && (
+                <div className="previews">
+                  {previewUrl.map((url, index) => (
+                    <div key={index} className="preview">
+                      <img src={url}></img>
+                      <div
+                        className="closeButton"
+                        index={index}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          // recreate a FileList
+                          // Note the specific way we need to munge the file into the hidden input
+                          // https://stackoverflow.com/a/68182158/1068446
+                          const dataTransfer = new DataTransfer();
+                          let files = hiddenInput.current.files;
+                          for (let i = 0; i < files.length; i++) {
+                            if (i !== index) {
+                              dataTransfer.items.add(files[i]);
+                            }
+                          }
+                          hiddenInput.current.files = dataTransfer.files;
+                          setFormState({
+                            ...formState,
+                            picture: [...dataTransfer.files],
+                          });
+                        }}
+                      >
+                        <IoMdClose />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
+              <input
+                onChange={(event) =>
+                  setFormState({
+                    ...formState,
+                    picture: [...event.target.files],
+                  })
+                }
+                type="file"
+                name="picture"
+                multiple
+                ref={hiddenInput}
+              ></input>
             </div>
           )}
-          <div className="btn outline">
-            {formState.picture ? "Remplace ta photo" : "+ Ajoute une photo"}
-          </div>
-          <input
-            onChange={(event) =>
-              setFormState({ ...formState, picture: [...event.target.files] })
-            }
-            type="file"
-            name="picture"
-            multiple
-            ref={hiddenInput}
-          ></input>
-        </label>
+        </Dropzone>
       </section>
       <section>
         <label>
