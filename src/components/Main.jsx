@@ -1,13 +1,13 @@
 import { Routes, Route, useSearchParams } from "react-router-dom";
-import Home from "../pages/Home";
-import NotFound from "../pages/NotFound";
-import Offer from "../pages/Offer";
 import Header from "./Header/Header";
+import Home from "../pages/Home/Home";
+import NotFound from "../pages/NotFound";
+import Offer from "../pages/Offer/Offer";
+import PublishPage from "../pages/Publish/PublishPage";
 import { useState } from "react";
 
 import Cookie from "js-cookie";
 import Modal from "./Modal/Modal";
-import PublishPage from "../pages/publish/PublishPage";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();

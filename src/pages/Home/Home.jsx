@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import OfferCard from "../components/OfferCard/OfferCard";
+import OfferCard from "../../components/OfferCard/OfferCard";
+import "./home.css";
 
 const Home = ({ search, range, sort }) => {
   const [data, setData] = useState(null);
@@ -52,30 +53,30 @@ const Home = ({ search, range, sort }) => {
     <div>Chargement en cours....</div>
   ) : (
     <>
-      <nav>
-        <span className="numberResponses">
-          <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
-        </span>
-        Pages :{" "}
-        <ol className="pages">
-          {new Array(pages).fill("").map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                setPage(index + 1);
-              }}
-              className={page === index + 1 ? "active" : ""}
-            >
-              {index + 1}
-            </li>
+        <nav>
+          <span className="numberResponses">
+            <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
+          </span>
+          Pages :{" "}
+          <ol className="pages">
+            {new Array(pages).fill("").map((item, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setPage(index + 1);
+                }}
+                className={page === index + 1 ? "active" : ""}
+              >
+                {index + 1}
+              </li>
+            ))}
+          </ol>
+        </nav>
+        <section className="listOffers">
+          {data.offers.map((item) => (
+            <OfferCard key={item._id} {...item}></OfferCard>
           ))}
-        </ol>
-      </nav>
-      <section className="listOffers">
-        {data.offers.map((item) => (
-          <OfferCard key={item._id} {...item}></OfferCard>
-        ))}
-      </section>
+        </section>
     </>
   );
 };

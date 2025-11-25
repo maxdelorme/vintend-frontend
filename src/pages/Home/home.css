@@ -1,0 +1,50 @@
+.listOffers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  a {
+    text-decoration: none;
+    width: calc((100% - 4 * 20px) / 5);
+    min-width: 240px;
+    flex: 1;
+    max-width: 450px;
+  }
+}
+nav {
+  margin: 10px 0;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  .numberResponses {
+    margin-right: auto;
+    border: 1px solid var(--vinted-green);
+    border-radius: 5px;
+    height: 1.5rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 0 1rem;
+    color: var(--vinted-green);
+  }
+  .pages {
+    display: inline-flex;
+    gap: 4px;
+    li {
+      border: 1px solid lightgray;
+      cursor: pointer;
+      height: 1.5rem;
+      width: 1.5rem;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &.active {
+        background-color: var(--vinted-green);
+        color: white;
+      }
+    }
+  }
+}
