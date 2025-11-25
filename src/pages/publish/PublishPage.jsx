@@ -7,6 +7,7 @@ import handleChange from "../../assets/utils/handleChange";
 import { useState, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import Dropzone from "react-dropzone";
+import { useNavigate } from "react-router-dom";
 
 const PublishPage = ({
   modal,
@@ -33,6 +34,7 @@ const PublishPage = ({
   const [formState, setFormState] = useState({});
   const form = useRef();
   const hiddenInput = useRef();
+  const navigate = useNavigate();
 
   const onSubmit = async (formData) => {
     try {
@@ -45,6 +47,8 @@ const PublishPage = ({
         formData,
         { headers: { authorization: `Bearer ${token}` } }
       );
+
+      navigate("/offers/" + response.data._id);
     } catch (error) {
       error.response
         ? console.log(error.response.data.message)
