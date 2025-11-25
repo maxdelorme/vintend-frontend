@@ -53,7 +53,7 @@ const PaiementPage = ({
   }
 
   return (
-    <section>
+    <section className="paiement">
       {basketContent.length === 0 ? (
         <p>
           Votre Panier est vide, merci de retourner{" "}

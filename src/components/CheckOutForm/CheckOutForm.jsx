@@ -93,6 +93,7 @@ const CheckoutForm = ({ title, amount }) => {
     <p>Paiement effectué</p>
   ) : (
     <form onSubmit={handleSubmit}>
+      <h2>Procéder au paiement</h2>
       <PaymentElement />
       <button
         type="submit"
