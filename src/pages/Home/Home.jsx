@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import OfferCard from "../../components/OfferCard/OfferCard";
+import { useSearchParams } from "react-router-dom";
 import "./home.css";
 
 const Home = ({ search, range, sort }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
   var pages = 0;
   const offerPerPage = 15;
+
+  const [currentQueryParams, setQueryParams] = useSearchParams();
+  const [page, setPage] = useState(currentQueryParams.get("page"));
 
   //reset page if search and range change
   useEffect(() => {
@@ -69,6 +72,17 @@ const Home = ({ search, range, sort }) => {
                 key={index}
                 onClick={() => {
                   setPage(index + 1);
+                  if (page)
+                    setQueryParams((prev) => {
+                      prev.set("page", index + 1);
+                      return prev;
+                    });
+                  else {
+                    setQueryParams((prev) => {
+                      prev.delete("page");
+                      return prev;
+                    });
+                  }
                 }}
                 className={page === index + 1 ? "active" : ""}
               >
