@@ -21,7 +21,9 @@ const Offer = () => {
 
       setIsLoading(false);
     } catch (error) {
-      console.log(error.message);
+      error.response
+        ? console.log(error.response.data.message)
+        : console.log(error);
     }
   };
 

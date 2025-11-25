@@ -46,7 +46,9 @@ const PublishPage = ({
         { headers: { authorization: `Bearer ${token}` } }
       );
     } catch (error) {
-      console.log(error.response);
+      error.response
+        ? console.log(error.response.data.message)
+        : console.log(error);
     }
   };
 
