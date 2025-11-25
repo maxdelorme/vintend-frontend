@@ -1,11 +1,15 @@
 .offer-page {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   transition: none;
+  gap: 20px;
+
   .pictCol {
     width: 60%;
+    background-color: white;
+    flex: 0 0 60%;
   }
   .react-multi-carousel-list {
     height: 100%;
@@ -22,14 +26,14 @@
   .offerDetailsCol {
     height: 600px;
     background-color: white;
-    width: 40%;
     padding: 2rem;
-    min-width: 400px;
     font-size: 0.8rem;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
+    flex: 1 1 0%;
+
     .price {
       font-size: 1.5rem;
       margin-bottom: 1rem;
