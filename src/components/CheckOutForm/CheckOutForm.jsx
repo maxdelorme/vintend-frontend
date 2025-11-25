@@ -5,8 +5,11 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import axios from "axios";
+import { useBasketContext } from "../basket/BasketContentProvider";
 
-const CheckoutForm = ({ title, amount, setBasket }) => {
+const CheckoutForm = ({ title, amount }) => {
+  const { clearBasket } = useBasketContext();
+
   // Permet de faire une requête à Stripe pour confirmer le paiement
   const stripe = useStripe();
   // Permet de récupérer le contenu des inputs
@@ -75,7 +78,7 @@ const CheckoutForm = ({ title, amount, setBasket }) => {
       // Si on reçois un status succeeded on fais passer completed à true
       if (stripeResponse.paymentIntent.status === "succeeded") {
         setCompleted(true);
-        setBasket([]);
+        clearBasket();
       }
       // On a fini de charger
       setIsLoading(false);
@@ -91,7 +94,11 @@ const CheckoutForm = ({ title, amount, setBasket }) => {
   ) : (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button type="submit" disabled={!stripe || !elements || isLoading}>
+      <button
+        type="submit"
+        className="fill-primary"
+        disabled={!stripe || !elements || isLoading}
+      >
         Pay
       </button>
       {/* Éventuel message d'erreur */}

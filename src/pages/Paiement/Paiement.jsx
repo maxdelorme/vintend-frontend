@@ -5,6 +5,7 @@ import CheckoutForm from "../../components/CheckOutForm/CheckOutForm";
 import { useEffect } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { Link } from "react-router-dom";
+import { useBasketContext } from "../../components/basket/BasketContentProvider";
 
 const stripePromise = loadStripe(
   "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
@@ -15,9 +16,9 @@ const PaiementPage = ({
   setModal,
   isAuthenticated,
   setIsAuthenticated,
-  basket,
-  setBasket,
 }) => {
+  const { getTotal, basketContent } = useBasketContext();
+
   useEffect(() => {
     // display modal if unauthenticated
     if (!isAuthenticated) {
@@ -35,13 +36,13 @@ const PaiementPage = ({
 
   let options = {};
   let title = null;
-  if (basket.length > 0) {
-    title = basket[0].product_name;
+  if (basketContent.length > 0) {
+    title = `${basketContent.length} products on Vinted by Maxouille`;
     options = {
       // Type de transaction
       mode: "payment",
       // Montant de la transaction
-      amount: basket[0].product_price * 100,
+      amount: getTotal() * 100,
       // Devise de la transaction
       currency: "eur",
       // On peut customiser l'apparence ici
@@ -52,22 +53,18 @@ const PaiementPage = ({
   }
 
   return (
-    <main className="div container">
-      {basket.length === 0 ? (
+    <section>
+      {basketContent.length === 0 ? (
         <p>
           Votre Panier est vide, merci de retourner{" "}
           <Link to="/">sur une page d'offre</Link>
         </p>
       ) : (
         <Elements stripe={stripePromise} options={options}>
-          <CheckoutForm
-            title={title}
-            amount={options.amount}
-            setBasket={setBasket}
-          />
+          <CheckoutForm title={title} amount={options.amount} />
         </Elements>
       )}
-    </main>
+    </section>
   );
 };
 

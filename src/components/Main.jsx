@@ -9,6 +9,8 @@ import { useState } from "react";
 import Cookie from "js-cookie";
 import Modal from "./Modal/Modal";
 import PaiementPage from "../pages/Paiement/Paiement";
+import { BasketContentProvider } from "./basket/BasketContentProvider";
+import Basket from "./basket/Basket";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
@@ -47,41 +49,39 @@ const Main = () => {
       />
       <main>
         <div className="container">
-          <Routes>
-            <Route
-              path="/"
-              element={<Home search={search} range={range} sort={sort} />}
-            ></Route>
-            <Route
-              path="/offers/:id"
-              element={<Offer basket={basket} setBasket={setBasket} />}
-            />
-            <Route
-              path="/publish"
-              element={
-                <PublishPage
-                  isAuthenticated={isAuthenticated}
-                  setModal={setModal}
-                  modal={modal}
-                  setIsAuthenticated={setIsAuthenticated}
-                />
-              }
-            />
-            <Route
-              path="/paiement"
-              element={
-                <PaiementPage
-                  isAuthenticated={isAuthenticated}
-                  setModal={setModal}
-                  modal={modal}
-                  setIsAuthenticated={setIsAuthenticated}
-                  basket={basket}
-                  setBasket={setBasket}
-                />
-              }
-            />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
+          <BasketContentProvider>
+            <Routes>
+              <Route
+                path="/"
+                element={<Home search={search} range={range} sort={sort} />}
+              ></Route>
+              <Route path="/offers/:id" element={<Offer />} />
+              <Route
+                path="/publish"
+                element={
+                  <PublishPage
+                    isAuthenticated={isAuthenticated}
+                    setModal={setModal}
+                    modal={modal}
+                    setIsAuthenticated={setIsAuthenticated}
+                  />
+                }
+              />
+              <Route
+                path="/paiement"
+                element={
+                  <PaiementPage
+                    isAuthenticated={isAuthenticated}
+                    setModal={setModal}
+                    modal={modal}
+                    setIsAuthenticated={setIsAuthenticated}
+                  />
+                }
+              />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+            <Basket />
+          </BasketContentProvider>
         </div>
       </main>
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}

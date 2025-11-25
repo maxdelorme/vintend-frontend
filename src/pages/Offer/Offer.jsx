@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./offer.css";
+import { useBasketContext } from "../../components/basket/BasketContentProvider";
 
-const Offer = ({ basket, setBasket }) => {
+const Offer = () => {
   const { id } = useParams();
   const [offer, setOffer] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
+  const { addItemToBasket } = useBasketContext();
 
   useEffect(() => {
     getOffer();
@@ -89,11 +90,10 @@ const Offer = ({ basket, setBasket }) => {
         <button
           className="fill-primary"
           onClick={() => {
-            setBasket([...basket, offer]);
-            navigate("/paiement");
+            addItemToBasket(offer._id, offer.product_price, offer.product_name);
           }}
         >
-          Acheter
+          Ajouter au panier
         </button>
       </div>
     </section>

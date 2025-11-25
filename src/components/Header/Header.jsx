@@ -1,5 +1,5 @@
 import logo from "../../assets/img/logo.svg";
-import { MdOutlineSearch } from "react-icons/md";
+import { IoIosSearch } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
@@ -66,7 +66,7 @@ const Header = ({
                 type="text"
                 placeholder="Recherche des articles"
               ></input>
-              <MdOutlineSearch />
+              <IoIosSearch />
             </label>
             <label className="range">
               Prix&nbsp;entre&nbsp;

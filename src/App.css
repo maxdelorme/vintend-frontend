@@ -29,3 +29,15 @@ strong {
 main {
   min-height: calc(100vh - var(--header-height));
 }
+
+@media (width > 768px) {
+  main .container {
+    display: flex;
+    padding: 2rem 0;
+    gap: 3.5rem;
+
+    & > * {
+      flex: 1;
+    }
+  }
+}

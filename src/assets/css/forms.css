@@ -3,7 +3,6 @@ form {
   flex-direction: column;
   align-items: stretch;
   gap: 30px;
-  padding: 40px;
   margin: auto;
   accent-color: var(--vinted-green);
 
