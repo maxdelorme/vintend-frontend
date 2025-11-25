@@ -8,6 +8,7 @@ import { useState } from "react";
 
 import Cookie from "js-cookie";
 import Modal from "./Modal/Modal";
+import PaiementPage from "../pages/Paiement/Paiement";
 
 const Main = () => {
   const [currentQueryParameters, setSearchParams] = useSearchParams();
@@ -23,6 +24,7 @@ const Main = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     Boolean(Cookie.get("token")) || false
   );
+  const [basket, setBasket] = useState([]);
 
   const [modal, setModal] = useState({
     isVisible: false,
@@ -48,7 +50,10 @@ const Main = () => {
           path="/"
           element={<Home search={search} range={range} sort={sort} />}
         ></Route>
-        <Route path="/offers/:id" element={<Offer />} />
+        <Route
+          path="/offers/:id"
+          element={<Offer basket={basket} setBasket={setBasket} />}
+        />
         <Route
           path="/publish"
           element={
@@ -60,6 +65,7 @@ const Main = () => {
             />
           }
         />
+        <Route path="/paiement" element={<PaiementPage />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}

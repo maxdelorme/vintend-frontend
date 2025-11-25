@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./offer.css";
 
-const Offer = () => {
+const Offer = ({ basket, setBasket }) => {
   const { id } = useParams();
   const [offer, setOffer] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOffer();
@@ -87,7 +88,15 @@ const Offer = () => {
               </div>
               <p className="username">{offer.owner.account.username}</p>
             </div>
-            <button className="fill-primary">Acheter</button>
+            <button
+              className="fill-primary"
+              onClick={() => {
+                setBasket([...basket, offer]);
+                navigate("/paiement");
+              }}
+            >
+              Acheter
+            </button>
           </div>
         </section>
       </div>
