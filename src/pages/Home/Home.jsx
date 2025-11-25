@@ -10,6 +10,10 @@ const Home = ({ search, range, sort }) => {
   var pages = 0;
   const offerPerPage = 15;
 
+  //reset page if search and range change
+  useEffect(() => {
+    setPage(1);
+  }, [search, range]);
   useEffect(() => {
     var ignore = false;
     const getData = async () => {
