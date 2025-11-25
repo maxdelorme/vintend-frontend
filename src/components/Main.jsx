@@ -43,27 +43,25 @@ const Main = () => {
         sort={sort}
         setSort={setSort}
       />
-      <main>
-        <Routes>
-          <Route
-            path="/"
-            element={<Home search={search} range={range} sort={sort} />}
-          ></Route>
-          <Route path="/offers/:id" element={<Offer />} />
-          <Route
-            path="/publish"
-            element={
-              <PublishPage
-                isAuthenticated={isAuthenticated}
-                setModal={setModal}
-                modal={modal}
-                setIsAuthenticated={setIsAuthenticated}
-              />
-            }
-          />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route
+          path="/"
+          element={<Home search={search} range={range} sort={sort} />}
+        ></Route>
+        <Route path="/offers/:id" element={<Offer />} />
+        <Route
+          path="/publish"
+          element={
+            <PublishPage
+              isAuthenticated={isAuthenticated}
+              setModal={setModal}
+              modal={modal}
+              setIsAuthenticated={setIsAuthenticated}
+            />
+          }
+        />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}
     </>
   );

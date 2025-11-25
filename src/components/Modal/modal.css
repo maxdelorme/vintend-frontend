@@ -18,6 +18,8 @@
     border-radius: 10px;
     cursor: auto;
     position: relative;
+    max-width: min(75vw, 500px);
+
     &:hover {
       box-shadow: 0px 0px 7px white;
     }

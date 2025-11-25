@@ -1,5 +1,10 @@
+.publishForm {
+  width: 100%;
+  padding: 40px 0;
+}
 .publishForm section {
   padding: 10px;
+  background-color: white;
   box-shadow: 0 0 5px lightgray;
   border-radius: 10px;
   width: 100%;

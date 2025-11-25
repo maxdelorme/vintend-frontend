@@ -52,10 +52,10 @@ const Offer = () => {
   return isLoading ? (
     <div>Chargement en cours....</div>
   ) : (
-    <main>
+    <main className="with-bg">
       <div className="container">
         <section className="offer-page">
-          <div className="col-g">
+          <div className="pictCol">
             <Carousel responsive={responsive}>
               {offer.product_pictures &&
                 offer.product_pictures.map((item, index) => (
@@ -63,7 +63,7 @@ const Offer = () => {
                 ))}
             </Carousel>
           </div>
-          <div className="col-d">
+          <div className="offerDetailsCol">
             <div className="price">{offer.product_price} €</div>
             <div className="details">
               {offer.product_details.map((detail, index) => (

@@ -52,7 +52,8 @@ const Home = ({ search, range, sort }) => {
   return isLoading ? (
     <div>Chargement en cours....</div>
   ) : (
-    <>
+    <main>
+      <div className="container">
         <nav>
           <span className="numberResponses">
             <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
@@ -77,7 +78,8 @@ const Home = ({ search, range, sort }) => {
             <OfferCard key={item._id} {...item}></OfferCard>
           ))}
         </section>
-    </>
+      </div>
+    </main>
   );
 };
 

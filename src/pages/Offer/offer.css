@@ -1,12 +1,11 @@
 .offer-page {
-  background-color: #f3f5f5;
   display: flex;
-  height: calc(100vh - var(--header-height));
-  padding: 2rem 2rem;
+  padding: 2rem 0;
   justify-content: space-between;
+  align-items: center;
   overflow: hidden;
   transition: none;
-  .col-g {
+  .pictCol {
     width: 60%;
   }
   .react-multi-carousel-list {
@@ -17,11 +16,12 @@
     justify-content: center;
     align-items: center;
   }
-  .col-g img {
+  .pictCol img {
     height: 600px;
     object-fit: cover;
   }
-  .col-d {
+  .offerDetailsCol {
+    height: 600px;
     background-color: white;
     width: 40%;
     padding: 2rem;

@@ -30,99 +30,101 @@ const Header = ({
 
   return (
     <header>
-      <Link to="/">
-        <img src={logo} />
-      </Link>
-      <label className="switchLabel">
-        trier par{" "}
-        <Switch isON={sort} setIsON={setSort} size="10px" color="#FF0000" />
-      </label>
-      <label>
-        <input
-          value={search}
-          onChange={(event) => {
-            const searchValue = event.target.value;
-            setSearch(searchValue);
-            if (searchValue)
+      <div className="container">
+        <Link to="/">
+          <img src={logo} />
+        </Link>
+        <label className="switchLabel">
+          trier par{" "}
+          <Switch isON={sort} setIsON={setSort} size="10px" color="#FF0000" />
+        </label>
+        <label>
+          <input
+            value={search}
+            onChange={(event) => {
+              const searchValue = event.target.value;
+              setSearch(searchValue);
+              if (searchValue)
+                setSearchParams((prev) => {
+                  prev.set("search", searchValue);
+                  return prev;
+                });
+              else {
+                setSearchParams((prev) => {
+                  prev.delete("search");
+                  return prev;
+                });
+              }
+              navigate("/");
+            }}
+            type="text"
+            placeholder="Recherche des articles"
+          ></input>
+          <MdOutlineSearch />
+        </label>
+        <label className="range">
+          Prix&nbsp;entre&nbsp;
+          <InputRange
+            value={range}
+            maxValue={100}
+            minValue={0}
+            formatLabel={(value) => `${value} €`}
+            onChange={(range) => {
+              setRange(range);
               setSearchParams((prev) => {
-                prev.set("search", searchValue);
+                prev.set("priceMin", range.min);
+                prev.set("priceMax", range.max);
                 return prev;
               });
-            else {
-              setSearchParams((prev) => {
-                prev.delete("search");
-                return prev;
-              });
-            }
-            navigate("/");
-          }}
-          type="text"
-          placeholder="Recherche des articles"
-        ></input>
-        <MdOutlineSearch />
-      </label>
-      <label className="range">
-        Prix&nbsp;entre&nbsp;
-        <InputRange
-          value={range}
-          maxValue={100}
-          minValue={0}
-          formatLabel={(value) => `${value} €`}
-          onChange={(range) => {
-            setRange(range);
-            setSearchParams((prev) => {
-              prev.set("priceMin", range.min);
-              prev.set("priceMax", range.max);
-              return prev;
-            });
-          }}
-        />
-      </label>
-      <span>
-        {isAuthenticated ? (
-          <button className="alert" onClick={disconnect}>
-            Se déconnecter
+            }}
+          />
+        </label>
+        <span>
+          {isAuthenticated ? (
+            <button className="alert" onClick={disconnect}>
+              Se déconnecter
+            </button>
+          ) : (
+            <>
+              <button
+                className="outline"
+                onClick={() =>
+                  setModal({
+                    isVisible: true,
+                    children: (
+                      <SignupForm
+                        setIsAuthenticated={setIsAuthenticated}
+                        setModal={setModal}
+                      ></SignupForm>
+                    ),
+                  })
+                }
+              >
+                S'inscrire
+              </button>
+              <button
+                className="outline"
+                onClick={() =>
+                  setModal({
+                    isVisible: true,
+                    children: (
+                      <LoginForm
+                        setIsAuthenticated={setIsAuthenticated}
+                        setModal={setModal}
+                      ></LoginForm>
+                    ),
+                  })
+                }
+              >
+                Se connecter
+              </button>
+            </>
+          )}
+          <button className="fill-primary">
+            <Link to="/publish">Vends tes articles</Link>
           </button>
-        ) : (
-          <>
-            <button
-              className="outline"
-              onClick={() =>
-                setModal({
-                  isVisible: true,
-                  children: (
-                    <SignupForm
-                      setIsAuthenticated={setIsAuthenticated}
-                      setModal={setModal}
-                    ></SignupForm>
-                  ),
-                })
-              }
-            >
-              S'inscrire
-            </button>
-            <button
-              className="outline"
-              onClick={() =>
-                setModal({
-                  isVisible: true,
-                  children: (
-                    <LoginForm
-                      setIsAuthenticated={setIsAuthenticated}
-                      setModal={setModal}
-                    ></LoginForm>
-                  ),
-                })
-              }
-            >
-              Se connecter
-            </button>
-          </>
-        )}
-        <button className="fill-primary">
-          <Link to="/publish">Vends tes articles</Link>
-        </button>
-      </span>
+        </span>
+      </div>
     </header>
   );
 };
