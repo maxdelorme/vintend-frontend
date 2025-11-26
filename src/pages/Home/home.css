@@ -1,13 +1,9 @@
 .listOffers {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: flex-start;
+  display: grid;
   gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   a {
     text-decoration: none;
-    width: 240px;
-    flex: 0;
   }
 }
 nav {
