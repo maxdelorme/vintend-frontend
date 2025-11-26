@@ -7,7 +7,7 @@ import handleChange from "../../utils/handleChange";
 import { useState, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import Dropzone from "react-dropzone";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const PublishPage = ({
   modal,
@@ -19,6 +19,7 @@ const PublishPage = ({
   useEffect(() => {
     // display modal if unauthenticated
     if (!isAuthenticated) {
+      setHasDisplayModal(true);
       setModal({
         isVisible: true,
         children: (
@@ -29,9 +30,11 @@ const PublishPage = ({
         ),
       });
     }
-  }, [isAuthenticated, modal.isVisible]);
+  }, [isAuthenticated]);
 
   const [formState, setFormState] = useState({});
+  const [hasDisplayModal, setHasDisplayModal] = useState(false);
+
   const form = useRef();
   const hiddenInput = useRef();
   const navigate = useNavigate();
@@ -66,7 +69,9 @@ const PublishPage = ({
     formState.picture = null;
   }
 
-  return (
+  return hasDisplayModal && !isAuthenticated && !modal.isVisible ? (
+    <Navigate to="/" />
+  ) : (
     <form className="publishForm" action={onSubmit} ref={form}>
       <h2>Vends ton article</h2>
       <section className="upload">
