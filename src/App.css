@@ -22,8 +22,17 @@ strong {
   margin: 0 auto;
 }
 
-.with-bg {
-  background-color: #ebedee;
+#root {
+  &.with-bg {
+    background-color: #ebedee;
+  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  main {
+    flex: 1;
+  }
 }
 
 @media (width > 768px) {
@@ -31,7 +40,7 @@ strong {
     display: flex;
     padding: 2rem 0;
     gap: 3.5rem;
-    min-height: calc(100vh - var(--header-height));
+    height: 100%;
 
     & > * {
       flex: 1;
