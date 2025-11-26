@@ -36,11 +36,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1rem;
-    background-color: #822774;
+    background-color: var(--vinted-green);
     cursor: pointer;
     color: white;
     .nbItems {
-      background-color: #36054f;
+      background-color: color-mix(in oklab, var(--vinted-green) 80%, black 20%);
       width: 1.8rem;
       height: 1.8rem;
       display: flex;
