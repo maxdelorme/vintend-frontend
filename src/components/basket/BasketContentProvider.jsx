@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const BasketContentContext = createContext("toto");
 
 export const BasketContentProvider = ({ children }) => {
-  const [basketContent, setBasketContent] = useState(null);
+  const [basketContent, setBasketContent] = useState([]);
   const transportPrice = 2.5;
 
   const value = {
