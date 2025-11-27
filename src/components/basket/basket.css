@@ -2,12 +2,12 @@
   position: sticky;
   bottom: 0px;
   --color-std: rgb(176, 176, 176);
-
   .panel.empty {
     display: block;
     .validate {
       display: none;
     }
+    
     .content {
       height: 85px;
       width: 100%;
@@ -16,7 +16,6 @@
       justify-content: center;
       padding: 0.8rem 1rem;
       background-color: white;
-
       p {
         background-color: #d3d3d3;
         width: 100%;
@@ -31,6 +30,7 @@
       }
     }
   }
+  
   .mini-basket {
     display: flex;
     justify-content: space-between;
@@ -48,14 +48,13 @@
       align-items: center;
     }
   }
-
+  
   .panel {
     display: none;
     background-color: white;
     padding: 5px;
     box-shadow: 0 0 5px grey;
     border-radius: 5px;
-
     .validate {
       border-radius: 5px;
       color: #8b9a9b;
@@ -65,6 +64,7 @@
       align-items: center;
       order: 1;
     }
+    
     .content {
       box-shadow: none;
       p {
@@ -73,21 +73,24 @@
         background-color: transparent;
       }
     }
+    
     .CloseMe {
       cursor: pointer;
       text-align: right;
       padding: 5px;
     }
     &.withitems .validate {
-      background-color: #822774;
+      background-color: var(--vinted-green);
       color: white;
     }
+    
     hr {
       border-top: 1px solid var(--color-std);
       height: 0.5px;
       width: 100%;
       color: transparent;
     }
+    
     .content {
       color: var(--color-std);
       height: 150px;
@@ -95,6 +98,7 @@
       justify-content: center;
       align-items: center;
     }
+    
     .listItems {
       display: flex;
       align-items: stretch;
@@ -102,15 +106,16 @@
       flex-direction: column;
       margin-top: 5px;
     }
+    
     .listItems .basketItem:nth-child(2n) {
       background-color: #f3f5f5;
     }
+    
     .basketItem {
       display: flex;
       align-items: center;
       gap: 5px;
       padding: 5px 0;
-
       .counter {
         display: flex;
         justify-content: space-between;
@@ -121,27 +126,32 @@
           fill: var(--vinted-green);
         }
       }
+      
       .title {
         text-align: left;
         font-size: 0.8rem;
       }
+      
       .price {
         margin-left: auto;
         text-wrap: nowrap;
       }
     }
+    
     .subTotal,
     .livraison,
     .total {
       display: flex;
       justify-content: space-between;
     }
+    
     .total {
       font-weight: 600;
       color: rgb(38, 38, 38);
     }
   }
 }
+
 .panel.expanded {
   display: flex;
   flex-direction: column;
@@ -156,13 +166,14 @@
     min-width: 280px;
     width: 360px;
     flex: 0;
-
     .bottomMsg {
       display: none;
     }
+    
     .mini-basket {
       display: none;
     }
+    
     .panel {
       position: sticky;
       top: var(--header-height);
@@ -174,17 +185,18 @@
       gap: 10px;
       box-shadow: rgba(46, 51, 51, 0.07) 0px 22px 24px 0px;
       color: var(--color-std);
-
       .CloseMe {
         display: none;
       }
     }
+    
     .panel.empty,
     .panel.withitems {
       .validate {
         display: flex;
         order: unset;
       }
+      
       .content {
         box-shadow: none;
         p {
@@ -194,9 +206,11 @@
         }
       }
     }
+    
     .panel.empty .validate {
       background-color: #bac3c3;
     }
+    
     .panel.withitems .validate {
       background-color: var(--vinted-green);
     }

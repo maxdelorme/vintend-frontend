@@ -6,25 +6,29 @@
   overflow: hidden;
   transition: none;
   gap: 20px;
-
   .pictCol {
     width: 100%;
     background-color: white;
   }
+  
   .react-multi-carousel-list {
     height: 100%;
   }
+  
   .react-multi-carousel-item {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  
   .pictCol img {
     height: 600px;
     object-fit: cover;
   }
+  
   .offerDetailsCol {
-    height: 600px;
+    width: 100%;
+    gap: 2rem;
     background-color: white;
     padding: 2rem;
     font-size: 0.8rem;
@@ -33,11 +37,11 @@
     align-items: stretch;
     justify-content: space-between;
     flex: 1 1 auto;
-
     .price {
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
+    
     .details {
       flex-direction: column;
       display: flex;
@@ -50,18 +54,22 @@
         }
       }
     }
+    
     hr {
       background-color: lightgrey;
       height: 1px;
       border: 0;
       width: 100%;
     }
+    
     .name {
       font-weight: bold;
     }
+    
     .desc {
       color: lightgray;
     }
+    
     .owner {
       display: flex;
       justify-content: flex-start;
@@ -72,17 +80,19 @@
         border-radius: 5px;
       }
     }
+    
     button {
       width: 100%;
     }
   }
 }
+
 @media (width > 768px) {
 }
+
 @media (width > 1280px) {
   .offer-page {
     flex-direction: row;
-
     .pictCol {
       width: 60%;
       flex: 0 0 auto;
