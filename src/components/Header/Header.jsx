@@ -47,7 +47,13 @@ const Header = ({
                 trier par prix{" "}
                 <Switch
                   isON={sort}
-                  onClick={setSort}
+                  onClick={(sort) => {
+                    setSort(sort);
+                    setSearchParams((prev) => {
+                      prev.set("sort", sort);
+                      return prev;
+                    });
+                  }}
                   size="10px"
                   color="#FF0000"
                 />
