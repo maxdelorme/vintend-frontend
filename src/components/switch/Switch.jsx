@@ -1,5 +1,5 @@
 import "./switch.css";
-const Switch = ({ isON, setIsON, size, color }) => {
+const Switch = ({ isON, onClick, size, color }) => {
   const defaultClassNames = "switch ";
 
   return (
@@ -8,7 +8,7 @@ const Switch = ({ isON, setIsON, size, color }) => {
       data-size={size}
       className={defaultClassNames + (isON ? "active" : "")}
       onClick={() => {
-        setIsON(!isON);
+        onClick(!isON);
       }}
     ></div>
   );
