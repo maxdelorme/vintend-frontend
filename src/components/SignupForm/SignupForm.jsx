@@ -1,11 +1,15 @@
+// Affichage du formulaire
+// tous les champs sont contrôlés
+// Ce formulaire est affichée dans une modale
 import { Link } from "react-router-dom";
 import "./SignupForm.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
+// utilisation de handleChange pour gérer de manière générique les changement
 import handleChange from "../../utils/handleChange";
 
-const SignupForm = ({ setIsAuthenticated, setModal }) => {
+const SignupForm = ({ setIsAuthenticated, setModal, setShowSignupOrLogin }) => {
   const [hasError, setHasError] = useState("");
   const [formData, setFormData] = useState({
     username: "",
@@ -89,7 +93,12 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
       <button type="submit" className="fill-primary">
         S'inscrire
       </button>
-      <Link to="/Login">
+      <Link
+        onClick={(event) => {
+          event.preventDefault();
+          setShowSignupOrLogin("login");
+        }}
+      >
         <p>Tu as déjà un compte ? Connecte-toi !</p>
       </Link>
     </form>

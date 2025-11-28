@@ -1,4 +1,5 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
+import SignupForm from "../../components/SignupForm/SignupForm";
 import "./publishPage.css";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -15,24 +16,36 @@ const PublishPage = ({
   setIsAuthenticated,
 }) => {
   // console.log(setModal);
+  const [showSignupOrLogin, setShowSignupOrLogin] = useState("login");
+  const [formState, setFormState] = useState({});
+  const [hasDisplayModal, setHasDisplayModal] = useState(false);
   useEffect(() => {
     // display modal if unauthenticated
     if (!isAuthenticated) {
       setHasDisplayModal(true);
-      setModal({
-        isVisible: true,
-        children: (
-          <LoginForm
-            setIsAuthenticated={setIsAuthenticated}
-            setModal={setModal}
-          ></LoginForm>
-        ),
-      });
+      showSignupOrLogin === "signup"
+        ? setModal({
+            isVisible: true,
+            children: (
+              <SignupForm
+                setIsAuthenticated={setIsAuthenticated}
+                setModal={setModal}
+                setShowSignupOrLogin={setShowSignupOrLogin}
+              ></SignupForm>
+            ),
+          })
+        : setModal({
+            isVisible: true,
+            children: (
+              <LoginForm
+                setIsAuthenticated={setIsAuthenticated}
+                setModal={setModal}
+                setShowSignupOrLogin={setShowSignupOrLogin}
+              ></LoginForm>
+            ),
+          });
     }
-  }, [isAuthenticated]);
-
-  const [formState, setFormState] = useState({});
-  const [hasDisplayModal, setHasDisplayModal] = useState(false);
+  }, [isAuthenticated, showSignupOrLogin]);
 
   const form = useRef();
   const hiddenInput = useRef();

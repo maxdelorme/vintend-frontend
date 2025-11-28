@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import handleChange from "../../utils/handleChange";
 
-const SignupForm = ({ setIsAuthenticated, setModal }) => {
+const SignupForm = ({ setIsAuthenticated, setModal, setShowSignupOrLogin }) => {
   const [hasError, setHasError] = useState("");
   const [formData, setformData] = useState({
     email: "",
@@ -66,7 +66,12 @@ const SignupForm = ({ setIsAuthenticated, setModal }) => {
       <button type="submit" className="fill-primary">
         S'inscrire
       </button>
-      <Link to="/signup">
+      <Link
+        onClick={(event) => {
+          event.preventDefault();
+          setShowSignupOrLogin("signup");
+        }}
+      >
         <p>Pas encore de compte ? inscris-toi </p>
       </Link>
     </form>
