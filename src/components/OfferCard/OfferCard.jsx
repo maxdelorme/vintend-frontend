@@ -1,3 +1,4 @@
+// carte d'une offre affiché sur la grille du home
 import { Link } from "react-router-dom";
 import "./offerCard.css";
 

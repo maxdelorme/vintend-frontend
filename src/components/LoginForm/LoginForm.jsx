@@ -1,7 +1,9 @@
+// Display the login form in a modal
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+// Get the generic handler
 import handleChange from "../../utils/handleChange";
 
 const SignupForm = ({ setIsAuthenticated, setModal, setShowSignupOrLogin }) => {
@@ -19,8 +21,8 @@ const SignupForm = ({ setIsAuthenticated, setModal, setShowSignupOrLogin }) => {
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
         formData
       );
-      Cookies.set("token", response.data.token, { expires: 1 });
 
+      Cookies.set("token", response.data.token, { expires: 1 });
       setIsAuthenticated(true);
       setModal({ isVisible: false });
     } catch (error) {

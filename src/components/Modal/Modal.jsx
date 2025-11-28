@@ -15,6 +15,7 @@ const Modal = ({ modal, setModal }) => {
   }, []);
 
   return (
+    // la class modalBg va afficher le flou d'arrière plan
     <div className="modalBg" onClick={closeModal}>
       <div
         className="modalWindow"

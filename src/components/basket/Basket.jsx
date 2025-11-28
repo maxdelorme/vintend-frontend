@@ -1,3 +1,5 @@
+// Display the basket
+// the basket is responsive
 import { useBasketContext } from "./BasketContentProvider";
 import BasketItem from "./BasketItem";
 import myFormat from "../../utils/EuroFormat";

@@ -16,6 +16,7 @@ const Offer = () => {
     getOffer();
   }, []);
 
+  // get the Data
   const getOffer = async () => {
     try {
       const response = await axios.get(
@@ -31,6 +32,7 @@ const Offer = () => {
     }
   };
 
+  // used by the carousel
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.

@@ -12,23 +12,38 @@ import PaiementPage from "../pages/Paiement/Paiement";
 import { BasketContentProvider } from "./basket/BasketContentProvider";
 import Basket from "./basket/Basket";
 
+// Note to be able to use useSearchParams we need to be under <ROUTER>
+// and I wanted to use it to preload the input search field from the params query
 const Main = () => {
+  // Get current query paramateres
   const [currentQueryParameters, setSearchParams] = useSearchParams();
+
+  // and use it to set the initial states
   const querySearch = currentQueryParameters.get("search");
   const [search, setSearch] = useState(querySearch || "");
+
+  // Initialise le sort State
   const querySort = currentQueryParameters.get("sort");
   const [sort, setSort] = useState(Boolean(querySort));
+
+  // Initialise le range
   const queryPriceMax = currentQueryParameters.get("priceMax") || 100;
   const queryPriceMin = currentQueryParameters.get("priceMin") || 0;
   const [range, setRange] = useState({
     min: queryPriceMin,
     max: queryPriceMax,
   });
+
+  // récupération du cookie pour savoir si l'utilisateur est authentifé
   const [isAuthenticated, setIsAuthenticated] = useState(
     Boolean(Cookie.get("token")) || false
   );
+
+  // Le panier est vide quand on démarre l'appli
+  // Note le panier est géré via un contexte pour éviter de trimbaler les props partout
   const [basket, setBasket] = useState([]);
 
+  // et la modale fermée
   const [modal, setModal] = useState({
     isVisible: false,
     children: "",
@@ -85,6 +100,7 @@ const Main = () => {
           </BasketContentProvider>
         </div>
       </main>
+      {/* Affichage conditionnel de la modale */}
       {modal.isVisible && <Modal modal={modal} setModal={setModal}></Modal>}
     </>
   );

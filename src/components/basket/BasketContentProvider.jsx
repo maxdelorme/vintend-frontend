@@ -1,3 +1,5 @@
+// the context store the content of the basket
+// and provide all function to interacte with the content of the basket
 import { createContext, useContext, useState } from "react";
 
 const BasketContentContext = createContext("toto");

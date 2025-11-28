@@ -13,7 +13,7 @@ const Home = ({ search, range, sort }) => {
   const [currentQueryParams, setQueryParams] = useSearchParams();
   const [page, setPage] = useState(currentQueryParams.get("page"));
 
-  //reset page if search and range change
+  // remove the grey background and put it again when destroying component
   useEffect(() => {
     const rootClassList = document.querySelector("#root").classList;
     rootClassList.remove("with-bg");
@@ -22,6 +22,7 @@ const Home = ({ search, range, sort }) => {
       rootClassList.add("with-bg");
     };
   }, []);
+  //reset page if there is a change on search, range, page, sort
   useEffect(() => {
     setPage(1);
   }, [search, range]);
@@ -61,6 +62,7 @@ const Home = ({ search, range, sort }) => {
   }, [search, page, range, sort]);
 
   if (!isLoading) {
+    // Calcul du nombre de pages disponible
     pages = Math.ceil(data.count / offerPerPage);
   }
 
@@ -68,6 +70,7 @@ const Home = ({ search, range, sort }) => {
     <div>Chargement en cours....</div>
   ) : (
     <div className="homePage">
+      {/* Affichage de la liste des liens vers la page */}
       <nav>
         <span className="numberResponses">
           <strong>{data.count} </strong> réponse{data.count > 1 ? "s" : ""}
@@ -98,6 +101,7 @@ const Home = ({ search, range, sort }) => {
           ))}
         </ol>
       </nav>
+      {/* affichage de la liste des offres */}
       <section className="listOffers">
         {data.offers.map((item) => (
           <OfferCard key={item._id} {...item}></OfferCard>

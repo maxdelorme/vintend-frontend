@@ -1,3 +1,4 @@
+// Display the header on top of the site
 import logo from "../../assets/img/logo.svg";
 import { IoIosSearch, IoIosMenu } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
@@ -32,8 +33,10 @@ const Header = ({
   const [showSignupOrLogin, setShowSignupOrLogin] = useState(false);
 
   const location = useLocation();
+
+  // on big device all the menu should be visible
   const { height, width } = useWindowDimensions();
-  
+
   useEffect(() => {
     console.log(showSignupOrLogin);
     if (showSignupOrLogin === "signup")

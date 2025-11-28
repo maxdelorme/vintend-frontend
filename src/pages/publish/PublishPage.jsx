@@ -15,10 +15,13 @@ const PublishPage = ({
   isAuthenticated,
   setIsAuthenticated,
 }) => {
-  // console.log(setModal);
+  // this state let we know if its the signup or the login form to show
   const [showSignupOrLogin, setShowSignupOrLogin] = useState("login");
+  // the data of the form
   const [formState, setFormState] = useState({});
+  // let we know that we have already show the modale
   const [hasDisplayModal, setHasDisplayModal] = useState(false);
+
   useEffect(() => {
     // display modal if unauthenticated
     if (!isAuthenticated) {
@@ -81,6 +84,7 @@ const PublishPage = ({
     formState.picture = null;
   }
 
+  // If the user click outside of the modale or close it without authenticated
   return hasDisplayModal && !isAuthenticated && !modal.isVisible ? (
     <Navigate to="/" />
   ) : (
@@ -106,11 +110,14 @@ const PublishPage = ({
                 <input {...getInputProps()} />
                 <p>Depose une photo ici , ou clique pour ajouter tes photos</p>
               </div>
+              {/* Display the previews of each uploaded pictures */}
               {formState.picture && (
                 <div className="previews">
+                  {/* loop on each pictures */}
                   {previewUrl.map((url, index) => (
                     <div key={index} className="preview">
                       <img src={url}></img>
+                      {/* The close button to remove the upload */}
                       <div
                         className="closeButton"
                         index={index}
