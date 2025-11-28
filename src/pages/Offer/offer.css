@@ -23,7 +23,8 @@
   
   .pictCol img {
     height: 600px;
-    object-fit: cover;
+    object-fit: contain;
+    width: 100%;
   }
   
   .offerDetailsCol {
@@ -97,5 +98,9 @@
       width: 60%;
       flex: 0 0 auto;
     }
+  }
+  
+  .offerDetailsCol {
+    height: 600px;
   }
 }
