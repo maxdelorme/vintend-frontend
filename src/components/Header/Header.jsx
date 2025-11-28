@@ -9,6 +9,7 @@ import LoginForm from "../LoginForm/LoginForm";
 import SignupForm from "../SignupForm/SignupForm";
 import Switch from "../switch/Switch";
 import useWindowDimensions from "../../utils/useWindowSize";
+import { useState, useEffect } from "react";
 
 const Header = ({
   search,
@@ -27,8 +28,38 @@ const Header = ({
     setIsAuthenticated(false);
   };
 
+  // this state let we know if its the signup or the login form to show
+  const [showSignupOrLogin, setShowSignupOrLogin] = useState(false);
+
   const location = useLocation();
   const { height, width } = useWindowDimensions();
+  
+  useEffect(() => {
+    console.log(showSignupOrLogin);
+    if (showSignupOrLogin === "signup")
+      setModal({
+        isVisible: true,
+        children: (
+          <SignupForm
+            setIsAuthenticated={setIsAuthenticated}
+            setModal={setModal}
+            setShowSignupOrLogin={setShowSignupOrLogin}
+          ></SignupForm>
+        ),
+      });
+    else if (showSignupOrLogin === "login")
+      setModal({
+        isVisible: true,
+        children: (
+          <LoginForm
+            setIsAuthenticated={setIsAuthenticated}
+            setModal={setModal}
+            setShowSignupOrLogin={setShowSignupOrLogin}
+          ></LoginForm>
+        ),
+      });
+  }, [showSignupOrLogin]);
+
   const openMenu = width > 768;
   return (
     <header>
@@ -110,33 +141,13 @@ const Header = ({
               <>
                 <button
                   className="outline"
-                  onClick={() =>
-                    setModal({
-                      isVisible: true,
-                      children: (
-                        <SignupForm
-                          setIsAuthenticated={setIsAuthenticated}
-                          setModal={setModal}
-                        ></SignupForm>
-                      ),
-                    })
-                  }
+                  onClick={() => setShowSignupOrLogin("signup")}
                 >
                   S'inscrire
                 </button>
                 <button
                   className="outline"
-                  onClick={() =>
-                    setModal({
-                      isVisible: true,
-                      children: (
-                        <LoginForm
-                          setIsAuthenticated={setIsAuthenticated}
-                          setModal={setModal}
-                        ></LoginForm>
-                      ),
-                    })
-                  }
+                  onClick={() => setShowSignupOrLogin("login")}
                 >
                   Se connecter
                 </button>
