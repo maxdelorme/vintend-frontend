@@ -66,7 +66,7 @@ const SignupForm = ({ setIsAuthenticated, setModal, setShowSignupOrLogin }) => {
         </p>
       )}
       <button type="submit" className="fill-primary">
-        S'inscrire
+        Se connecter
       </button>
       <Link
         onClick={(event) => {
